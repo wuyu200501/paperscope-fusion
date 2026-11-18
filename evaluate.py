@@ -17,7 +17,6 @@ from paperscope import (
     make_api_client, qasper_corpus,
 )
 
-RESULTS = ROOT / "results"
 TOP_K = 5
 ANSWERABLE = 20
 
@@ -259,8 +258,15 @@ def compare_claim_methods(rows):
     return comparisons
 
 
-def run(*, claims_only=False, embedding="small", output_dir=RESULTS):
+def benchmark_directory(embedding, claims_only=False):
+    name = "claim-ablation" if claims_only else "live-benchmark"
+    return ROOT / "data" / f"{name}-{embedding}"
+
+
+def run(*, claims_only=False, embedding="small", output_dir=None):
     start = perf_counter()
+    if output_dir is None:
+        output_dir = benchmark_directory(embedding, claims_only)
     papers = load_papers()
     qa = [] if claims_only else build_qa_cases(papers, qasper_corpus())
     claims = build_claim_cases(papers)
@@ -328,7 +334,7 @@ if __name__ == "__main__":
         papers = load_papers()
         qa = build_qa_cases(papers, qasper_corpus())
         claims = build_claim_cases(papers)
-        save_json(RESULTS / "cases.json", {"qa": qa, "claims": claims})
+        save_json(benchmark_directory("small") / "cases.json", {"qa": qa, "claims": claims})
         print(f"{len(qa)} QA cases and {len(claims)} claims verified against the corpus.")
     else:
         run()

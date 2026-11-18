@@ -97,14 +97,9 @@ if __name__ == "__main__":
     if args.check_key:
         check_key()
     if args.evaluate or args.claim_ablation:
-        from evaluate import RESULTS, run
+        from evaluate import run
 
-        output_dir = RESULTS
-        if args.claim_ablation:
-            output_dir = ROOT / "data" / f"claim-ablation-{args.embedding}"
-        elif args.embedding != "small":
-            output_dir = ROOT / "data" / f"live-benchmark-{args.embedding}"
-        metrics = run(claims_only=args.claim_ablation, embedding=args.embedding, output_dir=output_dir)
+        metrics = run(claims_only=args.claim_ablation, embedding=args.embedding)
         if any(row["api_errors"] for row in metrics["metrics"].values()):
             raise SystemExit("Some requests failed. Rerun the same command to retry failed cases.")
     if args.serve:

@@ -9,5 +9,7 @@ __pycache__/
 .streamlit/secrets.toml
 data/
 results/runs.json
+/PaperScope-Replay.html
+/PaperScope-Replay-latest.html
 *.tmp
 ~$*
