@@ -23,7 +23,14 @@ Both strategies hit evidence on 14/20 answerable questions using the original pa
 
 `shared_cases.json` fixes the same 20 extractive QASPER questions and paper IDs for both retrieval backends. `run_shared.py` uses the selected-paper scope, Top-5, and the same normalized complete-evidence-string rule. It exports ordered passages for manual answer and citation-support review when run with `--answer`. The proposed BGE and Qwen configurations use their own chunkers. A result from these settings compares complete retrieval configurations.
 
-The shared-set live results and manual reviews are pending. The tables above were recomputed from the archived logs. They contain neither a fresh model run nor a direct BGE-versus-Qwen score.
+A live BGE-small retrieval run used the same 20 papers and questions, selected-paper retrieval, and the same Top-5 scoring rule for both chunkers.
+
+| BGE-small chunking | Hit@5 |
+| --- | ---: |
+| Fixed size | 9/20 (45%) |
+| Paragraph aware | 14/20 (70%) |
+
+Paragraph-aware chunking recovered six questions and lost one. The [per-question hit records](shared_bge_retrieval.json) identify the paired outcomes. DeepSeek generation, manual answer review, and Qwen retrieval on the shared set are pending.
 
 - [PaperScope original benchmark](https://github.com/Kevin999-sudo/paperscope-cs5481/tree/7f02989d3410532eeed12329ea82ef2369b24a71/results)
 - [Qwen original benchmark](https://github.com/a5ynchr0ny/CS5481-project-rag/tree/e0493416a87dc60f7e5762a548ca999fe565c60c/results)

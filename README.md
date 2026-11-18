@@ -32,6 +32,9 @@ For authentication troubleshooting, run
 `python run_deepseek.py --check-key --serve` in an interactive terminal. The
 launcher prompts for a fresh key, checks it with DeepSeek's models endpoint,
 and starts the app with the same key after the check passes.
+If pasting into the hidden prompt adds unexpected characters, set
+`PAPERSCOPE_API_KEY` in the current shell and add `--use-env-key` to use that
+value for the check.
 
 On Windows, PaperScope loads the system Visual C++ runtime before PyTorch to
 avoid a `WinError 1114` from older runtime DLLs bundled with some Conda

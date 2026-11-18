@@ -30,6 +30,7 @@ def serve(port):
         "streamlit", "run", str(ROOT / "app.py"),
         "--global.developmentMode", "false", "--server.address", "127.0.0.1",
         "--server.port", str(port), "--server.headless", "true",
+        "--server.fileWatcherType", "none",
     ]
     cli.main()
 
@@ -59,6 +60,8 @@ if __name__ == "__main__":
     parser.add_argument("--evaluate", action="store_true")
     parser.add_argument("--serve", action="store_true")
     parser.add_argument("--check-key", action="store_true", help="Prompt for a fresh key and check it with DeepSeek.")
+    parser.add_argument("--use-env-key", action="store_true",
+                        help="With --check-key, read PAPERSCOPE_API_KEY instead of prompting.")
     parser.add_argument("--offline", action="store_true", help="Serve local extractive QA.")
     parser.add_argument("--port", type=int, default=8517)
     args = parser.parse_args()
@@ -66,14 +69,23 @@ if __name__ == "__main__":
         parser.error("choose --evaluate, --serve or --check-key")
     if args.offline and (args.evaluate or args.check_key):
         parser.error("--evaluate and --check-key require DeepSeek")
+    if args.use_env_key and not args.check_key:
+        parser.error("--use-env-key requires --check-key")
     if args.offline:
         os.environ.pop("PAPERSCOPE_API_KEY", None)
-    elif args.check_key or not os.environ.get("PAPERSCOPE_API_KEY"):
-        if not sys.stdin.isatty():
-            parser.error("start in an interactive terminal to enter the API key without echo")
-        api_key = getpass.getpass("DeepSeek API key: ").strip()
+    else:
+        api_key = os.environ.get("PAPERSCOPE_API_KEY", "").strip()
+        if args.use_env_key:
+            if not api_key:
+                parser.error("PAPERSCOPE_API_KEY is empty.")
+        elif args.check_key or not api_key:
+            if not sys.stdin.isatty():
+                parser.error("start in an interactive terminal to enter the API key without echo")
+            api_key = getpass.getpass("DeepSeek API key: ").strip()
         if not api_key:
             parser.error("No DeepSeek API key was entered.")
+        if any(not 33 <= ord(char) <= 126 for char in api_key):
+            parser.error("The API key contains non-ASCII, whitespace or control characters. Copy the complete key and retry.")
         os.environ["PAPERSCOPE_API_KEY"] = api_key
     if args.check_key:
         check_key()
