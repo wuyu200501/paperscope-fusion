@@ -1,0 +1,191 @@
+[
+  {
+    "question_id": "2dbf6fe095cd879a9bf40f110b7b72c8bdde9475",
+    "paper_id": "1709.10367",
+    "question": "What hierarchical modelling approach is used?",
+    "gold_answer": "the group-specific embedding representations are tied through a global embedding",
+    "evidence": [
+      "We propose two methods to share statistical strength among the embedding vectors. The first approach is based on hierarchical modeling BIBREF13 , which assumes that the group-specific embedding representations are tied through a global embedding. The second approach is based on amortization BIBREF14 , BIBREF15 , which considers that the individual embeddings are the output of a deterministic function of a global embedding representation. We use stochastic optimization to fit large data sets."
+    ]
+  },
+  {
+    "question_id": "c1c44fd96c3fa6e16949ae8fa453e511c6435c68",
+    "paper_id": "1902.09243",
+    "question": "Why masking words in the decoder is helpful?",
+    "gold_answer": "ecause this process is similar to the cloze task in BERT's pre-train process, therefore by using the ability of the contextual language model the decoder can generate more fluent and natural sequences.",
+    "evidence": [
+      "We design the word-level refine decoder because this process is similar to the cloze task in BERT's pre-train process, therefore by using the ability of the contextual language model the decoder can generate more fluent and natural sequences."
+    ]
+  },
+  {
+    "question_id": "c77359fb9d3ef96965a9af0396b101f82a0a9de6",
+    "paper_id": "1909.00105",
+    "question": "How did they obtain the interactions?",
+    "gold_answer": "from Food.com",
+    "evidence": [
+      "We collect a novel dataset of 230K+ recipe texts and 1M+ user interactions (reviews) over 18 years (2000-2018) from Food.com. Here, we restrict to recipes with at least 3 steps, and at least 4 and no more than 20 ingredients. We discard users with fewer than 4 reviews, giving 180K+ recipes and 700K+ reviews, with splits as in tab:recipeixnstats."
+    ]
+  },
+  {
+    "question_id": "a8f51b4e334a917702422782329d97304a2fe139",
+    "paper_id": "1712.05999",
+    "question": "What is the threshold for determining that a tweet has gone viral?",
+    "gold_answer": "1000",
+    "evidence": [
+      "One straightforward way of sharing information on Twitter is by using the retweet functionality, which enables a user to share a exact copy of a tweet with his followers. Among the reasons for retweeting, Body et al. BIBREF15 reported the will to: 1) spread tweets to a new audience, 2) to show one’s role as a listener, and 3) to agree with someone or validate the thoughts of others. As indicated, our initial interest is to characterize tweets containing fake news that went viral (as they are the most harmful ones, as they reach a wider audience), and understand how it differs from other viral tweets (that do not contain fake news). For our study, we consider that a tweet went viral if it was retweeted more than 1000 times."
+    ]
+  },
+  {
+    "question_id": "021bfb7e180d67112b74f05ecb3fa13acc036c86",
+    "paper_id": "1703.07476",
+    "question": "How is the vocabulary of word-like or phoneme-like units automatically discovered?",
+    "gold_answer": "Zero Resource Toolkit (ZRTools) BIBREF7",
+    "evidence": [
+      "UTD aims to automatically identify and cluster repeated terms (e.g. words or phrases) from speech. To circumvent the exhaustive DTW-based search limited by INLINEFORM0 time BIBREF6 , we exploit the scalable UTD framework in the Zero Resource Toolkit (ZRTools) BIBREF7 , which permits search in INLINEFORM1 time. We briefly describe the UTD procedures in ZRTools by four steps below, and full details can be found in BIBREF7 ."
+    ]
+  },
+  {
+    "question_id": "78292bc57ee68fdb93ed45430d80acca25a9e916",
+    "paper_id": "1911.03343",
+    "question": "How did they extend LAMA evaluation framework to focus on negation?",
+    "gold_answer": "To this end, we introduce the negated LAMA dataset. We construct it by simply inserting negation elements (e.g., “not”) in LAMA cloze statement",
+    "evidence": [
+      "This work analyzes the understanding of pretrained language models of factual and commonsense knowledge stored in negated statements. To this end, we introduce the negated LAMA dataset. We construct it by simply inserting negation elements (e.g., “not”) in LAMA cloze statement (e.g., “The theory of relativity was not developed by [MASK].”). In our experiments, we query the pretrained language models with both original LAMA and negated LAMA statements and compare their predictions in terms of rank correlation and overlap of top predictions. We find that the predicted filler words often have high overlap. Thus, negating a cloze statement does not change the predictions in many cases – but of course it should as our example “birds can fly” vs. “birds cannot fly” shows. We identify and analyze a subset of cloze statements where predictions are different. We find that BERT handles negation best among pretrained language models, but it still fails badly on most negated statements."
+    ]
+  },
+  {
+    "question_id": "d087539e6a38c42f0a521ff2173ef42c0733878e",
+    "paper_id": "1909.11687",
+    "question": "Why are prior knowledge distillation techniques models are ineffective in producing student models with vocabularies different from the original teacher models?  ",
+    "gold_answer": "While there has been existing work on reducing NLP model vocabulary sizes BIBREF15, distillation techniques cannot utilize these, since they require the student and teacher models to share the same vocabulary and output space. This profoundly limits their potential to further reduce model sizes.",
+    "evidence": [
+      "However, a significant bottleneck that has been overlooked by previous efforts is the input vocabulary size and its corresponding word embedding matrix, often accounting for a significant proportion of all model parameters. For instance, the embedding table of the BERTBASE model, comprising over 30K WordPiece tokens BIBREF14, accounts for over $21\\%$ of the model size. While there has been existing work on reducing NLP model vocabulary sizes BIBREF15, distillation techniques cannot utilize these, since they require the student and teacher models to share the same vocabulary and output space. This profoundly limits their potential to further reduce model sizes."
+    ]
+  },
+  {
+    "question_id": "ed67359889cf61fa11ee291d6c378cccf83d599d",
+    "paper_id": "1707.06806",
+    "question": "Which pretrained word vectors did they use?",
+    "gold_answer": " pre-trained GloVe word vectors ",
+    "evidence": [
+      "Since the input of our method is textual data, we follow the approach of BIBREF15 and map the text into a fixed-size vector representation. To this end, we use word embeddings that were successfully applied in other domains. We follow BIBREF5 and use pre-trained GloVe word vectors BIBREF16 to initialize the embedding layer (also known as look-up table). Section SECREF18 discusses the embedding layer in more details."
+    ]
+  },
+  {
+    "question_id": "493e971ee3f57a821ef1f67ef3cd47ade154e7c4",
+    "paper_id": "1803.09123",
+    "question": "What word embeddings do they test?",
+    "gold_answer": "Bernoulli embeddings (b-emb) BIBREF1 , continuous bag-of-words (CBOW) BIBREF5 , Distributed Memory version of Paragraph Vector (PV-DM) BIBREF11 and the Global Vectors (GloVe) BIBREF6 model",
+    "evidence": [
+      "We present a comparison of the proposed models to existing word embeddings approaches. These are: the Bernoulli embeddings (b-emb) BIBREF1 , continuous bag-of-words (CBOW) BIBREF5 , Distributed Memory version of Paragraph Vector (PV-DM) BIBREF11 and the Global Vectors (GloVe) BIBREF6 model."
+    ]
+  },
+  {
+    "question_id": "662870a90890c620a964720b2ca122a1139410ea",
+    "paper_id": "1608.01884",
+    "question": "What language do they explore?",
+    "gold_answer": "English, French, German ",
+    "evidence": [
+      "The third person plural pronoun `they' has no gender in English and most other languages (unlike the third person singular pronouns `he', `she', and `it'). However Romance languages such as French, Italian, and Spanish, and Semitic languages such as Hebrew and Arabic distinguish between the masculine and the feminine third-person plural pronouns, at least in some grammatical cases. For instance in French, the masculine pronoun is `ils'; the feminine pronoun is `elles'. In all of these cases, the masculine pronoun is standardly used for groups of mixed or unknown gender.",
+      "If these sentences are translated into French, then `they' in the first sentence should be translated `elles', as referring to Jane and Susan, and `they' in the second sentence should be translated `ils', as referring to Fred and George.",
+      "A couple of examples: The word `sie' in German serves as both the formal second person prounoun (always capitalized), the third person feminine singular, and the third person plural. Therefore, it can be translated into English as either “you”, “she”, “it”, or “they”; and into French as either `vous', `il', `elle', `ils', or `elles'. (The feminine third-person singular German `sie' can be translated as neuter in English and as masculine in French because the three languages do not slice up the worlds into genders in the same way.) Likewise, the possessive pronoun `ihr' in all its declensions can mean either `her' or `their'. In some cases, the disambiguation can be carried out on purely syntactic ground; e.g. if `sie' is the subject of a third-person singular verb, it must mean `she'. However, in many case, the disambiguation requires a deeper level of understanding. Thus, it should be possible to construct German Winograd schemas based on the words `sie' or `ihr' that have to be solved in order to translate them into English. For example,"
+    ]
+  },
+  {
+    "question_id": "b9d07757e2d2c4be41823dd1ea3b9c7f115b5f72",
+    "paper_id": "1808.03738",
+    "question": "Where does the ancient Chinese dataset come from?",
+    "gold_answer": "ancient Chinese history records in several dynasties (about 1000BC-200BC) and articles written by celebrities of that era",
+    "evidence": [
+      "Data Collection. To build the large ancient-modern Chinese dataset, we collected 1.7K bilingual ancient-modern Chinese articles from the internet. More specifically, a large part of the ancient Chinese data we used come from ancient Chinese history records in several dynasties (about 1000BC-200BC) and articles written by celebrities of that era. They used plain and accurate words to express what happened at that time, and thus ensure the generality of the translated materials."
+    ]
+  },
+  {
+    "question_id": "1269c5d8f61e821ee0029080c5ba2500421d5fa6",
+    "paper_id": "1805.07133",
+    "question": "what methods were used to reduce data sparsity effects?",
+    "gold_answer": "Back Translation, Mix-Source Approach",
+    "evidence": [
+      "In this section, we describe the data augmentation methods we use to increase the amount of training data in order to make our NMT systems suffer less from the low-resourced situation in Japanese INLINEFORM0 Vietnamese translation. Although NMT systems can predict and generate the translation of unseen words on their vocabularies, but they only perform this well if the parallel corpus for training are sufficiently large. For many under-resourced languages, unfortunately, it hardly presents. In reality, although the monolingual data of Vietnamese and Japanese are immensely available due to the popularity of their speakers, the bilingual Japanese-Vietnamese corpora are very limited and often in low quality or in narrowly technical domains. Therefore, data augmentation methods to exploit monolingual data for NMT systems are necessary to obtain more bilingual data, thus upgrading the translating quality.",
+      "Back Translation",
+      "One of the approaches to leverage the monolingual data is to use a machine translation system to translate those data in order to create a synthetic parallel data. Normally, the monolingual data in the target language is translated, thus the name of the method: Back Translation BIBREF11 .",
+      "Mix-Source Approach",
+      "Another data augmentation method considered useful in this low-resourced setting is the mix-source method BIBREF12 . In this method, we can utilize the monolingual data of the target language in a multilingual NMT system by mixing the original source sentences with those target monolingual data. The multilingual framework then uses the share information across source and target languages to improve the decision of the target words to be chosen."
+    ]
+  },
+  {
+    "question_id": "5a6926de13a8cc25ce687c22741ba97a6e63d4ee",
+    "paper_id": "1706.01875",
+    "question": "What other political events are included in the database?",
+    "gold_answer": "US presidential primaries, Democratic and Republican National Conventions",
+    "evidence": [
+      "Offensiveness over time. We find that on average 8.4% of all political comments are offensive compared to 7.8% of all apolitical comments. fig:offensive-speech-timeline illustrates the fraction of offensive political and apolitical comments made during each week in our study. We see that while the fraction of apolitical offensive comments has stayed steady, there has been an increase in the fraction of offensive political comments starting in July 2016. Notably, this increase is observed after the conclusion of the US presidential primaries and during the period of the Democratic and Republican National Conventions and does not reduce even after the conclusion of the US presidential elections held on November 8. Participants in political subreddits were 2.6% more likely to observe offensive comments prior to July 2016 but 14.9% more likely to observe offensive comments from July 2016 onwards."
+    ]
+  },
+  {
+    "question_id": "df95b3cb6aa0187655fd4856ae2b1f503d533583",
+    "paper_id": "1805.03710",
+    "question": "What types of subwords do they incorporate in their model?",
+    "gold_answer": "n-gram subwords, unsupervised morphemes identified using Morfessor BIBREF11 to learn whether more linguistically motivated subwords ",
+    "evidence": [
+      "We compare 1) the use of n-gram subwords, like fastText, and 2) unsupervised morphemes identified using Morfessor BIBREF11 to learn whether more linguistically motivated subwords offer any advantage over simple n-grams."
+    ]
+  },
+  {
+    "question_id": "4c07c33dfaf4f3e6db55e377da6fa69825d0ba15",
+    "paper_id": "1610.09225",
+    "question": "What is the dimension of the embeddings?",
+    "gold_answer": "300",
+    "evidence": [
+      "Word2vec representation is far better, advanced and a recent technique which functions by mapping words to a 300 dimensional vector representations. Once every word of the language has been mapped to a unique vector, vectors of words can be summed up yielding a resultant vector for any given collection of words BIBREF19 . Relationship between the words is exactly retained in this form of representation. Word vectors difference between Rome and Italy is very close to the difference between vectors of France and Paris This sustained relationship between word concepts makes word2vec model very attractive for textual analysis. In this representation, resultant vector which is sum of 300 dimensional vectors of all words in a tweet acts as features to the model."
+    ]
+  },
+  {
+    "question_id": "2da4c3679111dd92a1d0869dae353ebe5989dfd2",
+    "paper_id": "1908.08717",
+    "question": "What are four major corpora of French broadcast?",
+    "gold_answer": "ESTER1, ESTER2, ETAPE, REPERE",
+    "evidence": [
+      "Surprisingly, as data is said to be “the new oil\", few data sets are available for ASR systems. The best known are corpora like TIMIT BIBREF10, Switchboard BIBREF11 or Fisher BIBREF12 which date back to the early 1990s. The scarceness of available corpora is justified by the fact that gathering and annotating audio data is costly both in terms of money and time. Telephone conversations and broadcast recordings have been the primary source of spontaneous speech used. Out of all the 130 audio resources proposed by LDC to train automatic speech recognition systems in English, approximately 14% of them are based on broadcast news and conversation. For French speech technologies, four corpora containing radio and TV broadcast are the most widely used: ESTER1 BIBREF13, ESTER2 BIBREF14, ETAPE BIBREF15 and REPERE BIBREF16. These four corpora have been built alongside evaluation campaigns and are still, to our knowledge, the largest French ones of their type available to date."
+    ]
+  },
+  {
+    "question_id": "12c50dea84f9a8845795fa8b8c1679328bd66246",
+    "paper_id": "1910.10781",
+    "question": "What datasets did they use for evaluation?",
+    "gold_answer": "CSAT dataset, 20 newsgroups, Fisher Phase 1 corpus",
+    "evidence": [
+      "We evaluated our models on 3 different datasets:",
+      "CSAT dataset for CSAT prediction, consisting of spoken transcripts (automatic via ASR).",
+      "20 newsgroups for topic identification task, consisting of written text;",
+      "Fisher Phase 1 corpus for topic identification task, consisting of spoken transcripts (manual);"
+    ]
+  },
+  {
+    "question_id": "11e8bd4abf5f8bdabad3e8f0691e6d0ad6c326af",
+    "paper_id": "1909.08970",
+    "question": "What is the baseline?",
+    "gold_answer": "NO-MOVE, RANDOM, JUMP",
+    "evidence": [
+      "We provide three simple baselines for the RUN task: (1) NO-MOVE: the only position considered is the starting point; (2) RANDOM: As in BIBREF4, turn to a randomly selected heading, then execute a number of *WALK actions of an average route; (3) JUMP: at each sentence, extract entities from the map and move between them in the order they appear. If the *WALK action is invalid we take a random *TURN action."
+    ]
+  },
+  {
+    "question_id": "a74190189a6ced2a2d5b781e445e36f4e527e82a",
+    "paper_id": "1912.00667",
+    "question": "How are the accuracy merits of the approach demonstrated?",
+    "gold_answer": "significant improvements clearly demonstrate that our approach is effective at improving model performance",
+    "evidence": [
+      "Our approach improves LR by 5.17% (Accuracy) and 18.38% (AUC), and MLP by 10.71% (Accuracy) and 30.27% (AUC) on average. Such significant improvements clearly demonstrate that our approach is effective at improving model performance. We observe that the target models generally converge between the 7th and 9th iteration on both datasets when performance is measured by AUC. The performance can slightly degrade when the models are further trained for more iterations on both datasets. This is likely due to the fact that over time, the newly discovered keywords entail lower novel information for model training. For instance, for the CyberAttack dataset the new keyword in the 9th iteration `election' frequently co-occurs with the keyword `russia' in the 5th iteration (in microposts that connect Russian hackers with US elections), thus bringing limited new information for improving the model performance. As a side remark, we note that the models converge faster when performance is measured by accuracy. Such a comparison result confirms the difference between the metrics and shows the necessity for more keywords to discriminate event-related microposts from non event-related ones."
+    ]
+  },
+  {
+    "question_id": "3116453e35352a3a90ee5b12246dc7f2e60cfc59",
+    "paper_id": "1910.14076",
+    "question": "To what baseline models is proposed model compared?",
+    "gold_answer": "support vector machine classifier (SVM), logistic regression classifier (LR), Naive Bayes classifier (NB), random forest (RF), CNN, LSTM , LSTM-soft, LSTM-self",
+    "evidence": [
+      "TF-IDF: We applied TF-IDF features as inputs to four classifiers: support vector machine classifier (SVM), logistic regression classifier (LR), Naive Bayes classifier (NB) and random forest (RF); CNN: We followed the same architecture as BIBREF9; LSTM: We applied an LSTM model BIBREF20 to classify the sentences with pre-trained word embeddings;LSTM-soft: We then added a soft-attention BIBREF21 layer on top of the LSTM model where we computed soft alignment scores over each of the hidden states; LSTM-self: We applied a self-attention layer BIBREF22 to LSTM model. We denote the content vector as $c_i$ for each sentence $i$, as the input to the last classification layer."
+    ]
+  }
+]

@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PaperScope · Experiment Replay</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --background: #f4f3ec;
+      --paper: #fffefa;
+      --ink: #192c2d;
+      --muted: #526361;
+      --line: #d7ded6;
+      --accent: #104f49;
+      --green: #145941;
+      --red: #8a3223;
+      --amber: #664813;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--background); color: var(--ink);
+      font: 16px/1.55 system-ui, sans-serif;
+    }
+    .page { max-width: 1280px; padding: 34px 32px 64px; margin: auto; }
+    header { padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+    h1, h2, h3 { margin: 0; line-height: 1.15; }
+    h1, h2 { font-family: Georgia, serif; font-weight: 500; }
+    h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); letter-spacing: -.055em; }
+    h2 { font-size: clamp(1.55rem, 3vw, 2rem); }
+    h3 { font-size: 1rem; }
+    p { margin: .55rem 0; }
+    .project, .meta, .caption { color: var(--muted); font-size: .88rem; }
+    .project { font-weight: 700; }
+    .layout {
+      display: grid; grid-template-columns: 255px minmax(0, 1fr);
+      gap: 22px; align-items: start; margin-top: 22px;
+    }
+    aside, .case, article {
+      border: 1px solid var(--line); border-radius: 12px; background: var(--paper);
+    }
+    aside, .case, article { padding: 18px; }
+    nav { display: grid; gap: 6px; margin-top: 12px; }
+    button, select { font: inherit; }
+    button {
+      text-align: left; background: transparent; border: 1px solid transparent;
+      border-radius: 7px; color: var(--ink); cursor: pointer; padding: 7px 9px;
+    }
+    button:hover { background: #eff4ef; }
+    button[aria-pressed="true"] { color: white; background: var(--accent); }
+    :focus-visible { outline: 3px solid #b97329; outline-offset: 2px; }
+    label { display: block; margin: 21px 0 5px; font-weight: 650; }
+    select {
+      width: 100%; min-height: 40px; background: var(--paper); color: var(--ink);
+      border: 1px solid #8b9a93; border-radius: 6px; padding: 6px;
+    }
+    .case .meta { margin-top: 0; }
+    .reference { margin: 12px 0 0; font-size: .92rem; }
+    .result-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px; margin-top: 14px;
+    }
+    article { min-width: 0; }
+    article > .meta { margin: .3rem 0 .85rem; }
+    .status { font-weight: 700; }
+    .positive { color: var(--green); }
+    .negative { color: var(--red); }
+    .uncertain { color: var(--amber); }
+    .claim { margin: 14px 0; line-height: 1.45; }
+    blockquote {
+      background: #eef3ee; margin: 6px 0 2px; border-left: 3px solid #689084;
+      padding: 9px 12px; font-size: .92rem; overflow-wrap: anywhere;
+    }
+    details { margin-top: 15px; border-top: 1px solid var(--line); padding-top: 8px; }
+    summary { cursor: pointer; font-size: .9rem; }
+    .trace { margin: 6px 0; padding-left: 1.3rem; font-size: .82rem; overflow-wrap: anywhere; }
+    .trace code { color: var(--accent); }
+    footer { margin-top: 21px; }
+    footer a { color: var(--accent); }
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 205px minmax(0, 1fr); gap: 14px; }
+      .result-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .page { padding: 18px 14px 36px; }
+      .layout { grid-template-columns: 1fr; }
+      nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <p class="project">PaperScope</p>
+      <h1>Experiment Replay</h1>
+      <p>Compare recorded answers, verdicts and citations from the same benchmark case.</p>
+      <p class="meta" id="run-meta"></p>
+      <p class="meta">Offline replay. The recorded outputs load locally.</p>
+    </header>
+    <noscript>This replay requires JavaScript enabled in the browser.</noscript>
+    <main class="layout">
+      <aside aria-label="Case selection">
+        <div id="classroom-cases" hidden>
+          <h3>Classroom cases</h3>
+          <nav id="presets" aria-label="Classroom cases"></nav>
+        </div>
+        <label for="case-select">All benchmark cases</label>
+        <select id="case-select"></select>
+      </aside>
+      <section aria-label="Recorded results">
+        <div class="case" id="case" aria-live="polite"></div>
+        <div class="result-grid" id="results"></div>
+      </section>
+    </main>
+    <footer class="meta">
+      Citation excerpts and retrieval coordinates come from the recorded run.
+      <a href="https://github.com/Kevin999-sudo/paperscope-cs5481/tree/7f02989d3410532eeed12329ea82ef2369b24a71/results">View original benchmark files</a>
+    </footer>
+  </div>
+  <script type="application/json" id="replay-data"><!-- REPLAY_DATA --></script>
+  <script>
+    "use strict";
+    const replay = JSON.parse(document.getElementById("replay-data").textContent);
+    const cases = new Map(replay.cases.map(item => [item.id, item]));
+    const presets = [
+      ["qa-02", "Question with a citation"],
+      ["claim-02-a", "Supported statement"],
+      ["claim-02-b", "Conflicting number"],
+      ["claim-06-b", "Insufficient evidence"],
+      ["unanswerable-01", "Out-of-scope question"],
+      ["qa-04", "Blocked citation"],
+      ["claim-16-a", "Benchmark disagreement"],
+    ];
+    const strategyLabels = {fixed: "Fixed size", section: "Paragraph aware"};
+    const taskLabels = {qa: "Question answering", direct: "Direct", checked: "Checked"};
+    const verdicts = {
+      SUPPORTED: ["Supported", "positive"],
+      CONTRADICTED: ["Contradicted", "negative"],
+      INSUFFICIENT: ["Insufficient evidence", "uncertain"],
+    };
+    const strategyOrder = ["fixed", "section"];
+    const taskOrder = ["qa", "direct", "checked"];
+    const picker = document.getElementById("case-select");
+    const nav = document.getElementById("presets");
+    const casePanel = document.getElementById("case");
+    const resultPanel = document.getElementById("results");
+
+    function add(parent, tag, content, className) {
+      const node = document.createElement(tag);
+      if (content !== undefined) node.textContent = content;
+      if (className) node.className = className;
+      parent.append(node);
+      return node;
+    }
+
+    function outcomeStatus(result) {
+      if (result.error) return ["Run error", "negative"];
+      if (result.citation_error) return ["Citation blocked", "negative"];
+      if (result.verdict) return verdicts[result.verdict];
+      if (!result.claims.length) return ["Refused for insufficient evidence", "uncertain"];
+      return ["Answered", "positive"];
+    }
+
+    function renderCase(id) {
+      const item = cases.get(id);
+      picker.value = id;
+      for (const button of nav.querySelectorAll("button")) {
+        button.setAttribute("aria-pressed", String(button.dataset.case === id));
+      }
+      casePanel.replaceChildren();
+      add(casePanel, "p", item.id + " · QASPER paper " + item.paper_id, "meta");
+      add(casePanel, "h2", item.input);
+      if (item.expected) {
+        add(casePanel, "p", "Benchmark label: " + verdicts[item.expected][0], "reference");
+        add(casePanel, "p", "Annotated source excerpt: " + item.source_excerpt, "caption");
+      } else {
+        const reference = item.references.length ? item.references.join(" / ") : "Refuse to answer";
+        add(casePanel, "p", "Benchmark reference: " + reference, "reference");
+      }
+
+      resultPanel.replaceChildren();
+      const results = [...item.results].sort((left, right) =>
+        taskOrder.indexOf(left.task) - taskOrder.indexOf(right.task) ||
+        strategyOrder.indexOf(left.strategy) - strategyOrder.indexOf(right.strategy)
+      );
+      for (const result of results) renderResult(result);
+    }
+
+    function renderResult(result) {
+      const card = add(resultPanel, "article");
+      add(card, "h3", strategyLabels[result.strategy] + " · " + taskLabels[result.task]);
+      const [label, tone] = outcomeStatus(result);
+      add(card, "p", label, "status " + tone);
+      const score = result.correct ? "passed" : "failed";
+      const scoring = result.task === "qa" ? "Strict benchmark" : "Benchmark";
+      const seconds = result.seconds[0] + result.seconds[1];
+      add(card, "p", scoring + ": " + score + " · " + seconds.toFixed(2) + " s recorded", "meta");
+      if (result.error) add(card, "p", result.error, "caption");
+
+      const chunks = new Map(result.evidence.map(chunk => [chunk[0], chunk]));
+      for (const claim of result.claims) {
+        const group = add(card, "div", undefined, "claim");
+        add(group, "p", claim.text);
+        add(group, "blockquote", claim.quote);
+        const location = chunks.get(claim.source);
+        add(group, "div", "Section " + location[1] + " · " + claim.source, "caption");
+      }
+      const detail = add(card, "details");
+      add(detail, "summary", "Recorded retrieval trace (" + result.evidence.length + ")");
+      const trace = add(detail, "ol", undefined, "trace");
+      for (const [chunk, section, start, end, score] of result.evidence) {
+        const row = add(trace, "li");
+        add(row, "code", chunk);
+        row.append(" · section " + section + " · chars " + start + "–" + end + " · score " + score.toFixed(3));
+      }
+    }
+
+    if (replay.classroom_presets) {
+      document.getElementById("classroom-cases").hidden = false;
+      for (const [id, label] of presets) {
+        if (!cases.has(id)) continue;
+        const button = add(nav, "button", label);
+        button.type = "button";
+        button.dataset.case = id;
+        button.addEventListener("click", () => renderCase(id));
+      }
+    }
+    for (const [label, filter] of [
+      ["Question answering", item => !item.expected && item.references.length > 0],
+      ["Refusal", item => !item.expected && item.references.length === 0],
+      ["Statement checking", item => Boolean(item.expected)],
+    ]) {
+      const group = add(picker, "optgroup");
+      group.label = label;
+      for (const item of replay.cases.filter(filter)) {
+        add(group, "option", item.id + " · " + item.input).value = item.id;
+      }
+    }
+    picker.addEventListener("change", () => renderCase(picker.value));
+    document.getElementById("run-meta").textContent = [
+      replay.cases.length + " cases", replay.run_count + " recorded outputs",
+      replay.model, "Top " + replay.top_k, "Run " + replay.fingerprint,
+    ].join(" · ");
+    renderCase(replay.classroom_presets && cases.has("qa-02") ? "qa-02" : replay.cases[0].id);
+  </script>
+</body>
+</html>

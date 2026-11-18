@@ -1,0 +1,79 @@
+{
+  "model": "deepseek-flash",
+  "top_k": 5,
+  "fingerprint": "abe7f554cce0628b",
+  "metrics": {
+    "fixed/checked": {
+      "cases": 40,
+      "api_errors": 0,
+      "citation_validation_errors": 0,
+      "accuracy": 0.975,
+      "median_seconds": 1.2257,
+      "prompt_tokens": 53299,
+      "completion_tokens": 4233,
+      "preservation_rate": 0.95,
+      "false_acceptance_rate": 0
+    },
+    "fixed/direct": {
+      "cases": 40,
+      "api_errors": 0,
+      "citation_validation_errors": 0,
+      "accuracy": 0.975,
+      "median_seconds": 1.0621,
+      "prompt_tokens": 50779,
+      "completion_tokens": 3631,
+      "preservation_rate": 0.95,
+      "false_acceptance_rate": 0
+    },
+    "fixed/qa": {
+      "cases": 24,
+      "api_errors": 0,
+      "citation_validation_errors": 0,
+      "accuracy": 0.4166666666666667,
+      "median_seconds": 1.31535,
+      "prompt_tokens": 29461,
+      "completion_tokens": 3040,
+      "hit_at_5": 0.7,
+      "recall_at_5": 0.675,
+      "answerable_span_accuracy": 0.3,
+      "correct_refusal_rate": 1,
+      "answered_cases": 19
+    },
+    "section/checked": {
+      "cases": 40,
+      "api_errors": 0,
+      "citation_validation_errors": 0,
+      "accuracy": 0.95,
+      "median_seconds": 1.20785,
+      "prompt_tokens": 47816,
+      "completion_tokens": 3843,
+      "preservation_rate": 0.9,
+      "false_acceptance_rate": 0
+    },
+    "section/direct": {
+      "cases": 40,
+      "api_errors": 0,
+      "citation_validation_errors": 0,
+      "accuracy": 0.95,
+      "median_seconds": 1.0964999999999998,
+      "prompt_tokens": 45296,
+      "completion_tokens": 3608,
+      "preservation_rate": 0.9,
+      "false_acceptance_rate": 0
+    },
+    "section/qa": {
+      "cases": 24,
+      "api_errors": 0,
+      "citation_validation_errors": 1,
+      "accuracy": 0.5,
+      "median_seconds": 1.3083,
+      "prompt_tokens": 25441,
+      "completion_tokens": 3165,
+      "hit_at_5": 0.7,
+      "recall_at_5": 0.65,
+      "answerable_span_accuracy": 0.4,
+      "correct_refusal_rate": 1,
+      "answered_cases": 19
+    }
+  }
+}

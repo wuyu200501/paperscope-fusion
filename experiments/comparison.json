@@ -1,0 +1,84 @@
+{
+  "method": "Paired reanalysis of archived per-question outputs; no model or API calls.",
+  "qwen": [
+    {
+      "chunking": "Structured sections",
+      "scope": "paper",
+      "answerable": 40,
+      "hit_before": 29,
+      "hit_after": 35,
+      "hits_gained": 7,
+      "hits_lost": 1,
+      "mrr_before": 0.436,
+      "mrr_after": 0.512,
+      "unanswerable": 25,
+      "refused_before": 21,
+      "refused_after": 23,
+      "mean_shared_top5": 3.02
+    },
+    {
+      "chunking": "Structured sections",
+      "scope": "global",
+      "answerable": 40,
+      "hit_before": 10,
+      "hit_after": 13,
+      "hits_gained": 3,
+      "hits_lost": 0,
+      "mrr_before": 0.16,
+      "mrr_after": 0.209,
+      "unanswerable": 25,
+      "refused_before": 21,
+      "refused_after": 21,
+      "mean_shared_top5": 2.12
+    },
+    {
+      "chunking": "Sliding window",
+      "scope": "paper",
+      "answerable": 40,
+      "hit_before": 29,
+      "hit_after": 27,
+      "hits_gained": 0,
+      "hits_lost": 2,
+      "mrr_before": 0.337,
+      "mrr_after": 0.403,
+      "unanswerable": 25,
+      "refused_before": 21,
+      "refused_after": 21,
+      "mean_shared_top5": 3.75
+    },
+    {
+      "chunking": "Sliding window",
+      "scope": "global",
+      "answerable": 40,
+      "hit_before": 12,
+      "hit_after": 12,
+      "hits_gained": 2,
+      "hits_lost": 2,
+      "mrr_before": 0.102,
+      "mrr_after": 0.163,
+      "unanswerable": 25,
+      "refused_before": 21,
+      "refused_after": 19,
+      "mean_shared_top5": 2.17
+    }
+  ],
+  "paperscope": {
+    "answerable": 20,
+    "evidence_hit": {
+      "before": 14,
+      "after": 14,
+      "gained": 2,
+      "lost": 2
+    },
+    "strict_answer_match": {
+      "before": 6,
+      "after": 8,
+      "gained": 3,
+      "lost": 1
+    },
+    "citation_blocks": {
+      "fixed": 0,
+      "section": 1
+    }
+  }
+}

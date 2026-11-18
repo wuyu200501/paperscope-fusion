@@ -1,0 +1,933 @@
+{
+  "qa": [
+    {
+      "id": "qa-01",
+      "paper_id": "1912.01214",
+      "input": "what are the pivot-based baselines?",
+      "references": [
+        "firstly translates a source language into the pivot language which is later translated to the target language"
+      ],
+      "gold_paragraphs": [
+        [
+          3,
+          241,
+          979
+        ]
+      ],
+      "qasper_question_id": "f5e6f43454332e0521a778db0b769481e23e7682"
+    },
+    {
+      "id": "qa-02",
+      "paper_id": "1810.08699",
+      "input": "what is the source of the news sentences?",
+      "references": [
+        "ilur.am",
+        "links between Wikipedia articles to generate sequences of named-entity annotated tokens"
+      ],
+      "gold_paragraphs": [
+        [
+          3,
+          0,
+          253
+        ],
+        [
+          7,
+          0,
+          728
+        ]
+      ],
+      "qasper_question_id": "b5e4866f0685299f1d7af267bbcc4afe2aab806f"
+    },
+    {
+      "id": "qa-03",
+      "paper_id": "1609.00425",
+      "input": "what are the topics pulled from Reddit?",
+      "references": [
+        "politics, business, science, and AskReddit, and 1000 additional posts from the Reddit frontpage."
+      ],
+      "gold_paragraphs": [
+        [
+          3,
+          184,
+          926
+        ]
+      ],
+      "qasper_question_id": "b6ae8e10c6a0d34c834f18f66ab730b670fb528c"
+    },
+    {
+      "id": "qa-04",
+      "paper_id": "1609.00425",
+      "input": "What predictive model do they build?",
+      "references": [
+        "logistic regression models"
+      ],
+      "gold_paragraphs": [
+        [
+          5,
+          1167,
+          1699
+        ]
+      ],
+      "qasper_question_id": "a87a009c242d57c51fc94fe312af5e02070f898b"
+    },
+    {
+      "id": "qa-05",
+      "paper_id": "1704.06194",
+      "input": "What does KBQA abbreviate for",
+      "references": [
+        "Knowledge Base Question Answering"
+      ],
+      "gold_paragraphs": [
+        [
+          2,
+          0,
+          848
+        ]
+      ],
+      "qasper_question_id": "cfbec1ef032ac968560a7c76dec70faf1269b27c"
+    },
+    {
+      "id": "qa-06",
+      "paper_id": "1704.06194",
+      "input": "What is te core component for KBQA?",
+      "references": [
+        "answer questions by obtaining information from KB tuples",
+        "hierarchical matching between questions and relations with residual learning"
+      ],
+      "gold_paragraphs": [
+        [
+          2,
+          0,
+          848
+        ],
+        [
+          2,
+          4005,
+          4336
+        ]
+      ],
+      "qasper_question_id": "c0e341c4d2253eb42c8840381b082aae274eddad"
+    },
+    {
+      "id": "qa-07",
+      "paper_id": "1909.00512",
+      "input": "How do they calculate a static embedding for each word?",
+      "references": [
+        "by taking the first principal component (PC) of its contextualized representations in a given layer"
+      ],
+      "gold_paragraphs": [
+        [
+          22,
+          0,
+          636
+        ]
+      ],
+      "qasper_question_id": "891c2001d6baaaf0da4e65b647402acac621a7d2"
+    },
+    {
+      "id": "qa-08",
+      "paper_id": "1708.01464",
+      "input": "how is model compactness measured?",
+      "references": [
+        "15.4 MB"
+      ],
+      "gold_paragraphs": [
+        [
+          14,
+          1091,
+          1270
+        ]
+      ],
+      "qasper_question_id": "113d791df6fcfc9cecfb7b1bebaf32cc2e4402ab"
+    },
+    {
+      "id": "qa-09",
+      "paper_id": "1708.01464",
+      "input": "what was the baseline?",
+      "references": [
+        "system presented by deri2016grapheme",
+        "wFST"
+      ],
+      "gold_paragraphs": [
+        [
+          11,
+          0,
+          177
+        ]
+      ],
+      "qasper_question_id": "0752d71a0a1f73b3482a888313622ce9e9870d6e"
+    },
+    {
+      "id": "qa-10",
+      "paper_id": "1708.01464",
+      "input": "what datasets did they use?",
+      "references": [
+        "multilingual pronunciation corpus collected by deri2016grapheme"
+      ],
+      "gold_paragraphs": [
+        [
+          8,
+          0,
+          560
+        ]
+      ],
+      "qasper_question_id": "4eaf9787f51cd7cdc45eb85cf223d752328c6ee4"
+    },
+    {
+      "id": "qa-11",
+      "paper_id": "2002.03407",
+      "input": "Who were the human evaluators used?",
+      "references": [
+        "20 evaluators were recruited from our institution and asked to each perform 20 annotations"
+      ],
+      "gold_paragraphs": [
+        [
+          8,
+          3084,
+          4500
+        ]
+      ],
+      "qasper_question_id": "31735ec3d83c40b79d11df5c34154849aeb3fb47"
+    },
+    {
+      "id": "qa-12",
+      "paper_id": "2002.03407",
+      "input": "What is the recent abstractive summarization method in this paper?",
+      "references": [
+        "pointer networks with coverage mechanism (PG-net)"
+      ],
+      "gold_paragraphs": [
+        [
+          5,
+          0,
+          1023
+        ]
+      ],
+      "qasper_question_id": "c21b87c97d1afac85ece2450ee76d01c946de668"
+    },
+    {
+      "id": "qa-13",
+      "paper_id": "1605.06083",
+      "input": "What is the size of the dataset?",
+      "references": [
+        "30,000",
+        "collection of over 30,000 images with 5 crowdsourced descriptions each"
+      ],
+      "gold_paragraphs": [
+        [
+          2,
+          0,
+          404
+        ]
+      ],
+      "qasper_question_id": "7561a968470a8936d10e1ba722d2f38b5a9a4d38"
+    },
+    {
+      "id": "qa-14",
+      "paper_id": "1605.06083",
+      "input": "What biases are found in the dataset?",
+      "references": [
+        "adjectives are used to create “more narrow labels [or subtypes] for individuals who do not fit with general social category expectations”"
+      ],
+      "gold_paragraphs": [
+        [
+          4,
+          316,
+          817
+        ]
+      ],
+      "qasper_question_id": "26c2e1eb12143d985e4fb50543cf0d1eb4395e67"
+    },
+    {
+      "id": "qa-15",
+      "paper_id": "1804.05918",
+      "input": "What discourse relations does it work best/worst for?",
+      "references": [
+        "explicit discourse relations"
+      ],
+      "gold_paragraphs": [
+        [
+          12,
+          1586,
+          2216
+        ],
+        [
+          13,
+          0,
+          621
+        ]
+      ],
+      "qasper_question_id": "f17ca24b135f9fe6bb25dc5084b13e1637ec7744"
+    },
+    {
+      "id": "qa-16",
+      "paper_id": "1804.05918",
+      "input": "How much does this model improve state-of-the-art?",
+      "references": [
+        "1 percent"
+      ],
+      "gold_paragraphs": [
+        [
+          12,
+          2218,
+          2885
+        ]
+      ],
+      "qasper_question_id": "bd5bd1765362c2d972a762ca12675108754aa437"
+    },
+    {
+      "id": "qa-17",
+      "paper_id": "1809.04267",
+      "input": "Where is a question generation model used?",
+      "references": [
+        "framework consisting of both a question answering model and a question generation model"
+      ],
+      "gold_paragraphs": [
+        [
+          2,
+          2941,
+          4132
+        ]
+      ],
+      "qasper_question_id": "d9b6c61fc6d29ad399d27b931b6cb7b1117b314a"
+    },
+    {
+      "id": "qa-18",
+      "paper_id": "1912.04961",
+      "input": "What is the baseline?",
+      "references": [
+        "QA PGNet and Multi-decoder QA PGNet"
+      ],
+      "gold_paragraphs": [
+        [
+          11,
+          0,
+          162
+        ]
+      ],
+      "qasper_question_id": "99e78c390932594bd833be0f5c890af5c605d808"
+    },
+    {
+      "id": "qa-19",
+      "paper_id": "1910.10781",
+      "input": "On top of BERT does the RNN layer work better or the transformer layer?",
+      "references": [
+        "Transformer over BERT (ToBERT)"
+      ],
+      "gold_paragraphs": [
+        [
+          2,
+          1788,
+          2475
+        ]
+      ],
+      "qasper_question_id": "0810b43404686ddfe4ca84783477ae300fdd2ea4"
+    },
+    {
+      "id": "qa-20",
+      "paper_id": "1603.09631",
+      "input": "How was this data collected?",
+      "references": [
+        "CrowdFlower"
+      ],
+      "gold_paragraphs": [
+        [
+          6,
+          260,
+          415
+        ]
+      ],
+      "qasper_question_id": "455d4ef8611f62b1361be4f6387b222858bb5e56"
+    },
+    {
+      "id": "unanswerable-01",
+      "paper_id": "1810.08699",
+      "input": "What is the boiling point of liquid nitrogen at one atmosphere?",
+      "references": [],
+      "gold_paragraphs": []
+    },
+    {
+      "id": "unanswerable-02",
+      "paper_id": "1609.00425",
+      "input": "What is the orbital period of Neptune in Earth years?",
+      "references": [],
+      "gold_paragraphs": []
+    },
+    {
+      "id": "unanswerable-03",
+      "paper_id": "1909.09067",
+      "input": "What is the melting point of pure tungsten?",
+      "references": [],
+      "gold_paragraphs": []
+    },
+    {
+      "id": "unanswerable-04",
+      "paper_id": "1704.06194",
+      "input": "What is the mass of a proton in kilograms?",
+      "references": [],
+      "gold_paragraphs": []
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim-01-a",
+      "paper_id": "1810.08699",
+      "input": "The manually annotated test dataset contains 53,453 tokens.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          7,
+          117,
+          148
+        ]
+      ],
+      "source_excerpt": "53453 tokens and 2566 sentences"
+    },
+    {
+      "id": "claim-01-b",
+      "paper_id": "1810.08699",
+      "input": "The manually annotated test dataset contains 35,453 tokens.",
+      "expected": "CONTRADICTED",
+      "gold_anchor": [
+        [
+          7,
+          117,
+          148
+        ]
+      ],
+      "source_excerpt": "53453 tokens and 2566 sentences"
+    },
+    {
+      "id": "claim-02-a",
+      "paper_id": "1810.08699",
+      "input": "The manually annotated test dataset contains 2,566 sentences.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          7,
+          117,
+          148
+        ]
+      ],
+      "source_excerpt": "53453 tokens and 2566 sentences"
+    },
+    {
+      "id": "claim-02-b",
+      "paper_id": "1810.08699",
+      "input": "The manually annotated test dataset contains 5,266 sentences.",
+      "expected": "CONTRADICTED",
+      "gold_anchor": [
+        [
+          7,
+          117,
+          148
+        ]
+      ],
+      "source_excerpt": "53453 tokens and 2566 sentences"
+    },
+    {
+      "id": "claim-03-a",
+      "paper_id": "1810.08699",
+      "input": "The manually annotated test sentences were selected from news texts from ilur.am.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          7,
+          163,
+          195
+        ]
+      ],
+      "source_excerpt": "over 250 news texts from ilur.am"
+    },
+    {
+      "id": "claim-03-b",
+      "paper_id": "1810.08699",
+      "input": "The manually annotated test sentences were selected from news texts from Reuters.",
+      "expected": "CONTRADICTED",
+      "gold_anchor": [
+        [
+          7,
+          163,
+          195
+        ]
+      ],
+      "source_excerpt": "over 250 news texts from ilur.am"
+    },
+    {
+      "id": "claim-04-a",
+      "paper_id": "1810.08699",
+      "input": "The manually annotated test news covers August 2012 to July 2018.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          7,
+          407,
+          440
+        ]
+      ],
+      "source_excerpt": "between August 2012 and July 2018"
+    },
+    {
+      "id": "claim-04-b",
+      "paper_id": "1810.08699",
+      "input": "The manually annotated test news covers August 2014 to July 2018.",
+      "expected": "CONTRADICTED",
+      "gold_anchor": [
+        [
+          7,
+          407,
+          440
+        ]
+      ],
+      "source_excerpt": "between August 2012 and July 2018"
+    },
+    {
+      "id": "claim-05-a",
+      "paper_id": "1810.08699",
+      "input": "The pioNER test set labels people, organizations and locations.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          7,
+          511,
+          565
+        ]
+      ],
+      "source_excerpt": "people (PER), organizations (ORG), and locations (LOC)"
+    },
+    {
+      "id": "claim-05-b",
+      "paper_id": "1810.08699",
+      "input": "The pioNER test set labels people, organizations and dates as its three entity classes.",
+      "expected": "CONTRADICTED",
+      "gold_anchor": [
+        [
+          7,
+          511,
+          565
+        ]
+      ],
+      "source_excerpt": "people (PER), organizations (ORG), and locations (LOC)"
+    },
+    {
+      "id": "claim-06-a",
+      "paper_id": "1810.08699",
+      "input": "The manually annotated news and automatically generated Wikipedia corpora are for Armenian.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          1,
+          192,
+          248
+        ]
+      ],
+      "source_excerpt": "163000-token named entity corpus automatically generated"
+    },
+    {
+      "id": "claim-06-b",
+      "paper_id": "1810.08699",
+      "input": "Both corpus creation procedures would achieve equally accurate results for Georgian.",
+      "expected": "INSUFFICIENT",
+      "gold_anchor": [
+        [
+          1,
+          192,
+          248
+        ]
+      ],
+      "source_excerpt": "163000-token named entity corpus automatically generated"
+    },
+    {
+      "id": "claim-07-a",
+      "paper_id": "1609.00425",
+      "input": "The Reddit dogmatism training dataset contains 5,000 posts.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          3,
+          889,
+          925
+        ]
+      ],
+      "source_excerpt": "total training dataset of 5000 posts"
+    },
+    {
+      "id": "claim-07-b",
+      "paper_id": "1609.00425",
+      "input": "The Reddit dogmatism training dataset contains 50,000 posts.",
+      "expected": "CONTRADICTED",
+      "gold_anchor": [
+        [
+          3,
+          889,
+          925
+        ]
+      ],
+      "source_excerpt": "total training dataset of 5000 posts"
+    },
+    {
+      "id": "claim-08-a",
+      "paper_id": "1609.00425",
+      "input": "The initial training sample includes 1,000 posts from the Reddit frontpage.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          3,
+          677,
+          724
+        ]
+      ],
+      "source_excerpt": "1000 additional posts from the Reddit frontpage"
+    },
+    {
+      "id": "claim-08-b",
+      "paper_id": "1609.00425",
+      "input": "The initial training sample includes 2,000 posts from the Reddit frontpage.",
+      "expected": "CONTRADICTED",
+      "gold_anchor": [
+        [
+          3,
+          677,
+          724
+        ]
+      ],
+      "source_excerpt": "1000 additional posts from the Reddit frontpage"
+    },
+    {
+      "id": "claim-09-a",
+      "paper_id": "1609.00425",
+      "input": "The Reddit training posts have lengths between 300 and 400 characters.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          3,
+          847,
+          869
+        ]
+      ],
+      "source_excerpt": "300 and 400 characters"
+    },
+    {
+      "id": "claim-09-b",
+      "paper_id": "1609.00425",
+      "input": "The Reddit training posts have lengths between 300 and 400 words.",
+      "expected": "CONTRADICTED",
+      "gold_anchor": [
+        [
+          3,
+          847,
+          869
+        ]
+      ],
+      "source_excerpt": "300 and 400 characters"
+    },
+    {
+      "id": "claim-10-a",
+      "paper_id": "1609.00425",
+      "input": "The original Reddit training sample covers January 2007 to March 2015.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          3,
+          759,
+          794
+        ]
+      ],
+      "source_excerpt": "between January 2007 and March 2015"
+    },
+    {
+      "id": "claim-10-b",
+      "paper_id": "1609.00425",
+      "input": "The original Reddit training sample covers January 2007 to March 2019.",
+      "expected": "CONTRADICTED",
+      "gold_anchor": [
+        [
+          3,
+          759,
+          794
+        ]
+      ],
+      "source_excerpt": "between January 2007 and March 2015"
+    },
+    {
+      "id": "claim-11-a",
+      "paper_id": "1609.00425",
+      "input": "The BOW classifiers use an L2 penalty of 1.5.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          5,
+          1678,
+          1697
+        ]
+      ],
+      "source_excerpt": "L2 penalties of 1.5"
+    },
+    {
+      "id": "claim-11-b",
+      "paper_id": "1609.00425",
+      "input": "The BOW classifiers use an L2 penalty of 0.15.",
+      "expected": "CONTRADICTED",
+      "gold_anchor": [
+        [
+          5,
+          1678,
+          1697
+        ]
+      ],
+      "source_excerpt": "L2 penalties of 1.5"
+    },
+    {
+      "id": "claim-12-a",
+      "paper_id": "1609.00425",
+      "input": "The model's Reddit corpus was annotated via paid crowdsourcing.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          1,
+          253,
+          285
+        ]
+      ],
+      "source_excerpt": "annotated via paid crowdsourcing"
+    },
+    {
+      "id": "claim-12-b",
+      "paper_id": "1609.00425",
+      "input": "The Reddit dogmatism classifier works equally well on every major social media platform.",
+      "expected": "INSUFFICIENT",
+      "gold_anchor": [
+        [
+          1,
+          253,
+          285
+        ]
+      ],
+      "source_excerpt": "annotated via paid crowdsourcing"
+    },
+    {
+      "id": "claim-13-a",
+      "paper_id": "1909.09067",
+      "input": "The German readability and simplification corpus has about 211,000 sentences.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          1,
+          180,
+          211
+        ]
+      ],
+      "source_excerpt": "approximately 211,000 sentences"
+    },
+    {
+      "id": "claim-13-b",
+      "paper_id": "1909.09067",
+      "input": "The German readability and simplification corpus has about 21,000 sentences.",
+      "expected": "CONTRADICTED",
+      "gold_anchor": [
+        [
+          1,
+          180,
+          211
+        ]
+      ],
+      "source_excerpt": "approximately 211,000 sentences"
+    },
+    {
+      "id": "claim-14-a",
+      "paper_id": "1909.09067",
+      "input": "The German readability corpus contains structural, typographic and image information.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          1,
+          250,
+          303
+        ]
+      ],
+      "source_excerpt": "information on text structure, typography, and images"
+    },
+    {
+      "id": "claim-14-b",
+      "paper_id": "1909.09067",
+      "input": "The image information improves every readability model for all languages.",
+      "expected": "INSUFFICIENT",
+      "gold_anchor": [
+        [
+          1,
+          250,
+          303
+        ]
+      ],
+      "source_excerpt": "information on text structure, typography, and images"
+    },
+    {
+      "id": "claim-15-a",
+      "paper_id": "1909.09067",
+      "input": "The secondary data specifies token font type and font style.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          7,
+          777,
+          801
+        ]
+      ],
+      "source_excerpt": "font type and font style"
+    },
+    {
+      "id": "claim-15-b",
+      "paper_id": "1909.09067",
+      "input": "Token font style improves test accuracy by exactly 10 percentage points on every dataset.",
+      "expected": "INSUFFICIENT",
+      "gold_anchor": [
+        [
+          7,
+          777,
+          801
+        ]
+      ],
+      "source_excerpt": "font type and font style"
+    },
+    {
+      "id": "claim-16-a",
+      "paper_id": "1704.06194",
+      "input": "The paper reports state-of-the-art KBQA accuracy on SimpleQuestions and WebQSP.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          1,
+          742,
+          803
+        ]
+      ],
+      "source_excerpt": "single-relation (SimpleQuestions) and multi-relation (WebQSP)"
+    },
+    {
+      "id": "claim-16-b",
+      "paper_id": "1704.06194",
+      "input": "The paper demonstrates state-of-the-art KBQA accuracy on every single- and multi-relation benchmark.",
+      "expected": "INSUFFICIENT",
+      "gold_anchor": [
+        [
+          1,
+          742,
+          803
+        ]
+      ],
+      "source_excerpt": "single-relation (SimpleQuestions) and multi-relation (WebQSP)"
+    },
+    {
+      "id": "claim-17-a",
+      "paper_id": "1704.06194",
+      "input": "The relation detector uses deep residual bidirectional LSTMs.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          1,
+          275,
+          313
+        ]
+      ],
+      "source_excerpt": "uses deep residual bidirectional LSTMs"
+    },
+    {
+      "id": "claim-17-b",
+      "paper_id": "1704.06194",
+      "input": "The relation detector uses bidirectional LSTMs that yield the same improvement in every language.",
+      "expected": "INSUFFICIENT",
+      "gold_anchor": [
+        [
+          1,
+          275,
+          313
+        ]
+      ],
+      "source_excerpt": "uses deep residual bidirectional LSTMs"
+    },
+    {
+      "id": "claim-18-a",
+      "paper_id": "1909.00512",
+      "input": "For ELMo, BERT and GPT-2, a static embedding explains less than 5% of contextualized variance on average across the examined layers.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          1,
+          957,
+          985
+        ]
+      ],
+      "source_excerpt": "less than 5% of the variance"
+    },
+    {
+      "id": "claim-18-b",
+      "paper_id": "1909.00512",
+      "input": "For ELMo, BERT and GPT-2, a static embedding explains more than 50% of contextualized variance on average across the examined layers.",
+      "expected": "CONTRADICTED",
+      "gold_anchor": [
+        [
+          1,
+          957,
+          985
+        ]
+      ],
+      "source_excerpt": "less than 5% of the variance"
+    },
+    {
+      "id": "claim-19-a",
+      "paper_id": "1909.00512",
+      "input": "The self-similarity of word representations is lower in upper layers of the examined models.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          1,
+          668,
+          718
+        ]
+      ],
+      "source_excerpt": "this self-similarity is much lower in upper layers"
+    },
+    {
+      "id": "claim-19-b",
+      "paper_id": "1909.00512",
+      "input": "The upper-layer decrease in self-similarity is proven for every contextual language model.",
+      "expected": "INSUFFICIENT",
+      "gold_anchor": [
+        [
+          1,
+          668,
+          718
+        ]
+      ],
+      "source_excerpt": "this self-similarity is much lower in upper layers"
+    },
+    {
+      "id": "claim-20-a",
+      "paper_id": "1801.05147",
+      "input": "The proposed crowd annotation learning approach is applied to Chinese named entity recognition.",
+      "expected": "SUPPORTED",
+      "gold_anchor": [
+        [
+          1,
+          303,
+          341
+        ]
+      ],
+      "source_excerpt": "Chinese Named Entity Recognition (NER)"
+    },
+    {
+      "id": "claim-20-b",
+      "paper_id": "1801.05147",
+      "input": "The same approach has been shown to retain identical performance on all languages and entity types.",
+      "expected": "INSUFFICIENT",
+      "gold_anchor": [
+        [
+          1,
+          303,
+          341
+        ]
+      ],
+      "source_excerpt": "Chinese Named Entity Recognition (NER)"
+    }
+  ]
+}
