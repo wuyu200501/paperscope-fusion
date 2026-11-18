@@ -14,8 +14,8 @@ st.html("<style>[data-testid='stText'] {white-space: pre-wrap; overflow-wrap: an
 
 
 @st.cache_resource(show_spinner="Loading papers and building the vector index…")
-def open_paperscope():
-    return PaperScope()
+def open_paperscope(embedding):
+    return PaperScope(embedding=embedding, index_dir=os.getenv("PAPERSCOPE_QDRANT_DIR") or None)
 
 
 @st.cache_resource(show_spinner="Loading the Qwen index and paper catalog…")
@@ -35,6 +35,24 @@ page = st.radio("Workspace", ["Ask a question", "Check a statement", "Evaluation
                 horizontal=True, label_visibility="collapsed")
 if page == "Evaluation":
     st.header("Evaluation results")
+    for embedding in ("small", "base"):
+        live_path = ROOT / "data" / f"claim-ablation-{embedding}" / "metrics.json"
+        if live_path.is_file():
+            live = json.loads(live_path.read_text(encoding="utf-8"))
+            st.subheader(f"Live statement-checking comparison · BGE-{embedding}")
+            st.caption(f"{live['model']} · Top {live['top_k']} · run {live['fingerprint']}")
+            st.dataframe([
+                {
+                    "Configuration": key,
+                    "Cases": row["cases"],
+                    "Accuracy": f"{row['accuracy']:.1%}",
+                    "False acceptance": f"{row['false_acceptance_rate']:.1%}",
+                    "Macro-F1": f"{row['macro_f1']:.3f}",
+                    "Median latency (s)": round(row["median_seconds"], 2),
+                    "Tokens": row["prompt_tokens"] + row["completion_tokens"],
+                }
+                for key, row in live["metrics"].items()
+            ], hide_index=True, width="stretch")
     comparison_path = ROOT / "experiments" / "comparison.json"
     if comparison_path.is_file():
         comparison = json.loads(comparison_path.read_text(encoding="utf-8"))
@@ -94,8 +112,11 @@ if page == "Evaluation":
 
 st.sidebar.header("Search settings")
 api_enabled = bool(os.getenv("PAPERSCOPE_API_KEY"))
-backend = st.sidebar.radio("Retrieval backend", ["BGE-small", "Qwen"], disabled=not api_enabled)
-use_qwen = backend == "Qwen" and api_enabled
+backends = ["BGE-small", "BGE-base"]
+if api_enabled:
+    backends.append("Qwen")
+backend = st.sidebar.radio("Retrieval backend", backends)
+use_qwen = backend == "Qwen"
 strategies = QWEN_STRATEGIES if use_qwen else STRATEGIES
 strategy = st.sidebar.radio("Chunking", list(strategies), index=int(not use_qwen),
                             format_func=strategies.get)
@@ -104,8 +125,13 @@ try:
     if use_qwen:
         scope, papers = open_qwen()
     else:
-        scope = open_paperscope()
+        scope = open_paperscope("base" if backend == "BGE-base" else "small")
         papers = scope.papers
+        if scope.index_path:
+            st.sidebar.caption("Persistent Qdrant index")
+except FileNotFoundError as error:
+    st.error(str(error))
+    st.stop()
 except Exception as error:
     st.error(f"Could not load the selected retriever ({type(error).__name__}).")
     st.info("Check the QASPER archive and the selected backend setup in the README.")
@@ -117,6 +143,7 @@ if checking and not api_enabled:
     st.info("Start PaperScope in DeepSeek mode to check statements.")
     st.stop()
 mode = "DeepSeek API" if checking or use_qwen else st.sidebar.radio("Answer mode", modes)
+method = st.sidebar.radio("Checking method", ("Checked", "Direct")).lower() if checking else "qa"
 if mode == "Local extractive QA":
     st.sidebar.caption("Answers are short excerpts selected by a local model.")
 else:
@@ -138,7 +165,7 @@ with st.form("statement_form" if checking else "question_form"):
         "Check evidence" if checking else "Find an answer", type="primary"
     )
 
-settings = (paper_id, backend, strategy, rerank, mode, page)
+settings = (paper_id, backend, strategy, rerank, mode, page, method)
 if submitted:
     st.session_state.pop("result", None)
     if not question.strip():
@@ -153,9 +180,7 @@ if submitted:
                 else:
                     evidence = scope.retrieve(paper_id, question.strip(), strategy)
                 if mode == "DeepSeek API":
-                    answer = answer_with_api(
-                        question.strip(), evidence, "checked" if checking else "qa"
-                    )
+                    answer = answer_with_api(question.strip(), evidence, method)
                 else:
                     answer = scope.answer_locally(question.strip(), evidence)
                 st.session_state.result = (settings, question.strip(), answer, evidence)
@@ -180,7 +205,16 @@ if result and result[0] == settings:
             left.warning("Insufficient evidence")
     if answer.citation_error:
         left.warning("The response was withheld because a citation could not be verified.")
-    if cited:
+    if answer.conditions:
+        left.subheader("Condition-by-condition evidence")
+        for row in answer.conditions:
+            with left.expander(f"{row.condition} · {row.verdict}", expanded=True):
+                st.text(f"Statement: {row.statement}")
+                st.text(f"Evidence finding: {row.finding}")
+                if row.source_id:
+                    st.caption(row.source_id)
+                    st.text(row.quote)
+    elif cited:
         for index, (claim, source_id) in enumerate(answer.lines):
             left.text(claim)
             source = next(item for item in evidence if item["id"] == source_id)

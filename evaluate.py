@@ -11,8 +11,9 @@ from statistics import mean, median
 from time import perf_counter
 
 from claim_cases import PAIRS
+from embedding_models import EMBEDDINGS
 from paperscope import (
-    DEEPSEEK_MODEL, ROOT, STRATEGIES, PaperScope, answer_with_api, load_papers,
+    DEEPSEEK_MODEL, ROOT, STRATEGIES, VERDICTS, PaperScope, answer_with_api, load_papers,
     make_api_client, qasper_corpus,
 )
 
@@ -207,34 +208,91 @@ def summarize(rows, fingerprint):
         else:
             positive = [row for row in data if row["expected"] == "SUPPORTED"]
             negative = [row for row in data if row["expected"] != "SUPPORTED"]
+            pair_groups = defaultdict(list)
+            for row in data:
+                pair_groups[row["id"].rsplit("-", 1)[0]].append(row["correct"])
+            pairs = [all(members) for members in pair_groups.values() if len(members) == 2]
+            predictions = [
+                row["output"].get("verdict") if not (row["error"] or row["output"].get("citation_error"))
+                else None
+                for row in data
+            ]
+            label_scores = []
+            for verdict in VERDICTS:
+                expected = sum(row["expected"] == verdict for row in data)
+                predicted = predictions.count(verdict)
+                correct = sum(row["expected"] == verdict and prediction == verdict
+                              for row, prediction in zip(data, predictions, strict=True))
+                if expected or predicted:
+                    label_scores.append(2 * correct / (expected + predicted))
             entries.update({
                 "preservation_rate": mean(row["correct"] for row in positive),
                 "false_acceptance_rate": mean(
                     row["output"].get("verdict") == "SUPPORTED" for row in negative
                 ),
+                "macro_f1": mean(label_scores),
+                "paired_success_rate": mean(pairs) if pairs else None,
+                "structured_outputs": sum(bool(row["output"].get("conditions")) for row in data),
             })
         metrics[label] = entries
     return {"model": os.getenv("PAPERSCOPE_MODEL", DEEPSEEK_MODEL), "top_k": TOP_K,
             "fingerprint": fingerprint, "metrics": metrics}
 
 
-def run():
+def compare_claim_methods(rows):
+    comparisons = {}
+    for strategy in STRATEGIES:
+        direct, checked = (
+            {row["id"]: row for row in rows if row["strategy"] == strategy and row["task"] == task}
+            for task in ("direct", "checked")
+        )
+        if direct.keys() != checked.keys():
+            raise ValueError(f"Direct and Checked case IDs differ for {strategy}.")
+        pairs = [(direct[key], checked[key]) for key in direct]
+        if any(before["evidence"] != after["evidence"] for before, after in pairs):
+            raise ValueError(f"Direct and Checked evidence differs for {strategy}.")
+        comparisons[strategy] = {
+            "same_evidence_pairs": len(pairs),
+            "checked_gains": sum(not before["correct"] and after["correct"] for before, after in pairs),
+            "checked_losses": sum(before["correct"] and not after["correct"] for before, after in pairs),
+        }
+    return comparisons
+
+
+def run(*, claims_only=False, embedding="small", output_dir=RESULTS):
     start = perf_counter()
     papers = load_papers()
-    qa = build_qa_cases(papers, qasper_corpus())
+    qa = [] if claims_only else build_qa_cases(papers, qasper_corpus())
     claims = build_claim_cases(papers)
     cases = {"qa": qa, "claims": claims}
-    save_json(RESULTS / "cases.json", cases)
-    config = json.dumps([cases, os.getenv("PAPERSCOPE_MODEL", DEEPSEEK_MODEL), TOP_K], sort_keys=True)
+    save_json(output_dir / "cases.json", cases)
+    model_repo, revision = EMBEDDINGS[embedding]
+    config = json.dumps([cases, os.getenv("PAPERSCOPE_MODEL", DEEPSEEK_MODEL), TOP_K, revision], sort_keys=True)
     digest = hashlib.sha256(config.encode("utf-8"))
-    for name in ("paperscope.py", "evaluate.py"):
+    for name in ("paperscope.py", "condition_checks.py", "evaluate.py"):
         digest.update((ROOT / name).read_bytes())
     fingerprint = digest.hexdigest()[:16]
     checkpoint_file = ROOT / ".cache" / f"runs-{fingerprint}.json"
     rows = json.loads(checkpoint_file.read_text(encoding="utf-8")) if checkpoint_file.exists() else {}
     rows = {key: row for key, row in rows.items() if not row["error"]}
     print(f"Frozen: {len(qa)} QA cases, {len(claims)} claim cases, {len(papers)} papers.", flush=True)
-    scope = PaperScope()
+    scope = PaperScope(papers, embedding=embedding)
+    try:
+        rows = run_cases(scope, qa, claims, rows, checkpoint_file)
+    finally:
+        scope.close()
+    ordered = [rows[key] for key in sorted(rows)]
+    summary = summarize(ordered, fingerprint)
+    summary.update(embedding=model_repo, embedding_revision=revision,
+                   index_mode="persistent" if scope.index_path else "memory",
+                   claim_comparison=compare_claim_methods(ordered))
+    save_json(output_dir / "runs.json", ordered)
+    save_json(output_dir / "metrics.json", summary)
+    print(f"Saved {len(ordered)} results in {perf_counter() - start:.1f}s to {output_dir}.", flush=True)
+    return summary
+
+
+def run_cases(scope, qa, claims, rows, checkpoint_file):
     with make_api_client() as client, ThreadPoolExecutor(max_workers=5) as pool:
         futures = {}
         for strategy in STRATEGIES:
@@ -243,9 +301,13 @@ def run():
                 todo = [task for task in tasks if f'{strategy}/{task}/{case["id"]}' not in rows]
                 if not todo:
                     continue
-                retrieval_start = perf_counter()
-                evidence = scope.retrieve(case["paper_id"], case["input"], strategy, TOP_K)
-                retrieval_time = round(perf_counter() - retrieval_start, 4)
+                saved = next((rows[f'{strategy}/{task}/{case["id"]}'] for task in tasks if task not in todo), None)
+                if saved is None:
+                    retrieval_start = perf_counter()
+                    evidence = scope.retrieve(case["paper_id"], case["input"], strategy, TOP_K)
+                    retrieval_time = round(perf_counter() - retrieval_start, 4)
+                else:
+                    evidence, retrieval_time = saved["evidence"], saved["retrieval_seconds"]
                 for task in todo:
                     key = f'{strategy}/{task}/{case["id"]}'
                     future = pool.submit(request_case, client, case, strategy, task, evidence, retrieval_time)
@@ -256,11 +318,7 @@ def run():
             if index % 10 == 0 or index == len(futures):
                 save_json(checkpoint_file, rows)
                 print(f"Completed {index}/{len(futures)} new cases.", flush=True)
-    ordered = [rows[key] for key in sorted(rows)]
-    save_json(RESULTS / "runs.json", ordered)
-    summary = summarize(ordered, fingerprint)
-    save_json(RESULTS / "metrics.json", summary)
-    print(f"Saved {len(ordered)} results in {perf_counter() - start:.1f}s.", flush=True)
+    return rows
 
 
 if __name__ == "__main__":

@@ -65,6 +65,44 @@ python -m experiments.run_shared --backend qwen --strategy A --rerank --output d
 
 Add `--answer` and set `PAPERSCOPE_API_KEY` locally to generate answers in addition to retrieval output. For human review, check answer correctness against the reference first. Then check whether the displayed cited passages support the answer and record the two judgments separately. A cross-backend score belongs in the joint report after both runs and reviews have been completed.
 
+### BGE-base and persistent Qdrant
+
+~~~sh
+python prepare_assets.py --embedding base
+python -m experiments.run_shared --backend bge --embedding base --strategy fixed --output data/shared-base-fixed.json
+python -m experiments.run_shared --backend bge --embedding base --strategy section --output data/shared-base-section.json
+~~~
+
+Select **BGE-base** in the app or pass `--embedding base` to the benchmark.
+BGE-base reuses a disk-backed Qdrant index under `data/qdrant`. The model
+revision, source corpus, and chunking settings determine the index directory.
+The BGE-small baseline uses the original in-memory configuration by default.
+Stop other local PaperScope processes if a Qdrant directory is locked.
+
+### Direct and Checked statement comparison
+
+In **Check a statement**, choose **Checked** for a condition table or
+**Direct** for the original verdict. Each structured row shows the submitted
+condition, the evidence finding, and a verifiable quotation when available.
+The overall verdict follows conflict, insufficient evidence, then support.
+On the **pioNER** paper, compare `The manually annotated test dataset contains
+2,566 sentences.` with the same claim using `5,266 sentences`. For missing
+evidence, try `Both corpus creation procedures would achieve equally accurate
+results for Georgian.`.
+
+~~~sh
+python run_deepseek.py --check-key --claim-ablation --embedding base
+~~~
+
+The command prompts for a DeepSeek key and evaluates 40 existing statements
+across the four fixed/paragraph × Direct/Checked configurations. Each pair
+uses identical retrieved passages and the same output token cap. The
+checkpoint reuses the paired evidence when retrying a failed API call.
+See `data/claim-ablation-base/metrics.json` for accuracy, macro-F1, paired
+success, false acceptance, latency, and token totals. The older archived
+experiment used prompt-based Checked; the new run writes to a separate folder.
+The same command with `--embedding small` runs the BGE-small comparison.
+
 To generate an optional offline replay of the original PaperScope records, run `python build_replay.py`. For a completed new PaperScope run, use `python build_replay.py --from-run results --output PaperScope-Replay-latest.html`.
 
 ## Source attribution

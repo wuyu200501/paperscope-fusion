@@ -25,12 +25,29 @@ Both strategies hit evidence on 14/20 answerable questions using the original pa
 
 A live BGE-small retrieval run used the same 20 papers and questions, selected-paper retrieval, and the same Top-5 scoring rule for both chunkers.
 
-| BGE-small chunking | Hit@5 |
-| --- | ---: |
-| Fixed size | 9/20 (45%) |
-| Paragraph aware | 14/20 (70%) |
+| Model and index | Fixed-size Hit@5 | Paragraph-aware Hit@5 |
+| --- | ---: | ---: |
+| BGE-small, Qdrant in memory | 9/20 (45%) | 14/20 (70%) |
+| BGE-base, persistent Qdrant | 8/20 (40%) | 11/20 (55%) |
 
-Paragraph-aware chunking recovered six questions and lost one. The [per-question hit records](shared_bge_retrieval.json) identify the paired outcomes. DeepSeek generation, manual answer review, and Qwen retrieval on the shared set are pending.
+Paragraph-aware chunking recovered six questions and lost one. The [per-question hit records](shared_bge_retrieval.json) identify the paired outcomes. Both BGE-small configurations then generated 20 answers. Exact quote checks resolved 54/54 fixed-size citations and 57/57 paragraph-aware citations against the retrieved passages. Answer correctness and citation support still await human review.
+
+BGE-base retrieved on the identical question set under the same rule. The
+fixed-size and paragraph-aware runs used the same 768-dimensional disk index
+across separate processes. See the [BGE-base paired records](shared_base_retrieval.json).
+On this sample, BGE-small with paragraph-aware chunking had the highest Hit@5.
+
+## Structured Checked
+
+The new Checked workflow returns a row for each material condition with the
+assertion, evidence finding, verdict, and cited excerpt where applicable.
+PaperScope validates the source and quotation, then computes the overall
+verdict. The [claim ablation entry point](../README.md#direct-and-checked-statement-comparison)
+runs the four controlled configurations. Integration tests used simulated
+model responses, including three verdict types and a retry after an
+interrupted pair. Historical verdicts from the earlier prompt-based Checker
+remain in their original logs. Live results for structured Checked require a
+new run with a DeepSeek key.
 
 - [PaperScope original benchmark](https://github.com/Kevin999-sudo/paperscope-cs5481/tree/7f02989d3410532eeed12329ea82ef2369b24a71/results)
 - [Qwen original benchmark](https://github.com/a5ynchr0ny/CS5481-project-rag/tree/e0493416a87dc60f7e5762a548ca999fe565c60c/results)

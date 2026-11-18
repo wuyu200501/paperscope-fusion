@@ -9,6 +9,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from threading import Lock
 
+from condition_checks import CHECKED_PROMPT, VERDICTS, ConditionCheck, InvalidConditionCitation, validate_conditions
+from embedding_models import EMBEDDINGS
+
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
 CACHE = ROOT / ".cache"
@@ -35,7 +38,6 @@ PAPER_LIMIT = 20
 QUESTION_PREFIX = "Represent this sentence for searching relevant passages: "
 DEEPSEEK_URL = "https://api.deepseek.com"
 DEEPSEEK_MODEL = "deepseek-flash"
-VERDICTS = {"SUPPORTED", "CONTRADICTED", "INSUFFICIENT"}
 
 
 def qasper_corpus():
@@ -119,18 +121,35 @@ class Answer:
     prompt_tokens: int = 0
     completion_tokens: int = 0
     citation_error: bool = False
+    conditions: tuple[ConditionCheck, ...] = ()
 
 
 class PaperScope:
-    def __init__(self, papers=None):
+    def __init__(self, papers=None, *, embedding="small", index_dir=None):
         self.papers = load_papers() if papers is None else papers
-        self.encoder = SentenceTransformer(
-            str(DATA / "bge-small-en-v1.5"), local_files_only=True
-        )
+        self.model_repo, self.model_revision = EMBEDDINGS[embedding]
+        model_dir = DATA / self.model_repo.rsplit("/", 1)[-1]
+        if not (model_dir / "model.safetensors").is_file():
+            raise FileNotFoundError(f"Run prepare_assets.py --embedding {embedding} to download the model.")
+        self.encoder = SentenceTransformer(str(model_dir), local_files_only=True)
         self.lock = Lock()
         self.local_qa = None
-        self.index = QdrantClient(":memory:")
-        self._build_index()
+        if index_dir is None and embedding == "base":
+            index_dir = DATA / "qdrant"
+        self.index_path = None
+        if index_dir is not None:
+            manifest = [1, self.model_repo, self.model_revision, CHUNK_TOKENS, OVERLAP, self.papers]
+            fingerprint = hashlib.sha256(json.dumps(manifest, ensure_ascii=False).encode("utf-8")).hexdigest()[:16]
+            self.index_path = Path(index_dir) / f"{model_dir.name}-{fingerprint}"
+        self.index = QdrantClient(path=str(self.index_path)) if self.index_path else QdrantClient(":memory:")
+        try:
+            self._build_index()
+        except BaseException:
+            self.close()
+            raise
+
+    def close(self):
+        self.index.close()
 
     def _build_index(self):
         for strategy in STRATEGIES:
@@ -150,11 +169,21 @@ class PaperScope:
                             "id": f"{strategy}-{section_id:02}-{chunk_id:02}",
                             "text": section_text[start:stop],
                         })
+            if self.index.collection_exists(strategy):
+                if self.index.count(strategy, exact=True).count == len(chunks):
+                    continue
+                # Only this corpus-and-model-specific directory is owned by the index builder.
+                self.index.delete_collection(strategy)
             texts = [f"{chunk['section']}\n{chunk['text']}" for chunk in chunks]
             fingerprint = hashlib.sha256(
                 json.dumps(chunks, ensure_ascii=False).encode("utf-8")
             ).hexdigest()[:16]
-            cache_file = CACHE / f"bge-small-v1.5-{strategy}-{fingerprint}.npy"
+            model_cache = self.model_repo.rsplit("/", 1)[-1]
+            if model_cache == "bge-small-en-v1.5":
+                model_cache = "bge-small-v1.5"
+            else:
+                model_cache = f"{model_cache}-{self.model_revision[:8]}"
+            cache_file = CACHE / f"{model_cache}-{strategy}-{fingerprint}.npy"
             CACHE.mkdir(parents=True, exist_ok=True)
             if cache_file.is_file():
                 vectors = np.load(cache_file, allow_pickle=False)
@@ -270,6 +299,8 @@ def answer_with_api(query, evidence, task="qa", client=None):
             '{"claims":[]}. Otherwise use {"claims":[{"text":"answer",'
             '"source_id":"passage ID","quote":"exact supporting excerpt"}]}.'
         )
+    elif task == "checked":
+        system = CHECKED_PROMPT
     else:
         system += (
             'Check the input statement. SUPPORTED means all its material assertions are '
@@ -280,14 +311,6 @@ def answer_with_api(query, evidence, task="qa", client=None):
             '"quote":"exact supporting or conflicting excerpt"}]}. For INSUFFICIENT you may '
             'use an empty claims list if no relevant exact quote is available.'
         )
-        if task == "checked":
-            system += (
-                ' Before choosing a verdict, check each material condition independently: '
-                'metric or unit, numeric value, dataset, population, comparison and scope '
-                'where applicable. Explain the decisive matched, conflicting or missing '
-                'condition in your cited reason. If evidence for any condition is missing '
-                'and no direct conflict is present, choose INSUFFICIENT.'
-            )
     if client is None:
         with make_api_client() as managed_client:
             return answer_with_api(query, evidence, task, managed_client)
@@ -298,7 +321,7 @@ def answer_with_api(query, evidence, task="qa", client=None):
     for _ in range(2):
         result = client.chat.completions.create(
             model=model, response_format={"type": "json_object"},
-            temperature=0, max_tokens=600,
+            temperature=0, max_tokens=600 if task == "qa" else 1600,
             messages=[{"role": "system", "content": system},
                       {"role": "user", "content": json.dumps(payload, ensure_ascii=False)}],
             **options,
@@ -323,7 +346,20 @@ def validate_api_answer(raw, evidence, task="qa", usage=(0, 0)):
         body = json.loads(raw)
     except json.JSONDecodeError as error:
         raise ValueError("The API did not return the expected citation format.") from error
-    if not isinstance(body, dict) or not isinstance(body.get("claims"), list):
+    if not isinstance(body, dict):
+        raise ValueError("The API did not return a JSON object.")
+    if task == "checked":
+        try:
+            conditions, verdict = validate_conditions(body, texts)
+        except InvalidConditionCitation:
+            return Answer([], "LLM API", verdict="INSUFFICIENT",
+                          prompt_tokens=usage[0], completion_tokens=usage[1], citation_error=True)
+        cited = [row for row in conditions if row.source_id]
+        return Answer(
+            [(row.finding, row.source_id) for row in cited], "LLM API",
+            tuple(row.quote for row in cited), verdict, *usage, conditions=conditions,
+        )
+    if not isinstance(body.get("claims"), list):
         raise ValueError("The API did not return the expected citation format.")
     verdict = "" if task == "qa" else body.get("verdict")
     if task != "qa" and verdict not in VERDICTS:

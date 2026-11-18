@@ -6,6 +6,8 @@ import os
 import sys
 from pathlib import Path
 
+from embedding_models import EMBEDDINGS
+
 ROOT = Path(__file__).resolve().parent
 CACHE = ROOT / ".cache"
 CACHE.mkdir(exist_ok=True)
@@ -57,7 +59,12 @@ def check_key():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--evaluate", action="store_true")
+    evaluations = parser.add_mutually_exclusive_group()
+    evaluations.add_argument("--evaluate", action="store_true")
+    evaluations.add_argument("--claim-ablation", action="store_true",
+                             help="Run the four Direct/Checked × chunking configurations.")
+    parser.add_argument("--embedding", choices=EMBEDDINGS, default="small",
+                        help="BGE variant for the selected evaluation.")
     parser.add_argument("--serve", action="store_true")
     parser.add_argument("--check-key", action="store_true", help="Prompt for a fresh key and check it with DeepSeek.")
     parser.add_argument("--use-env-key", action="store_true",
@@ -65,10 +72,10 @@ if __name__ == "__main__":
     parser.add_argument("--offline", action="store_true", help="Serve local extractive QA.")
     parser.add_argument("--port", type=int, default=8517)
     args = parser.parse_args()
-    if not (args.evaluate or args.serve or args.check_key):
-        parser.error("choose --evaluate, --serve or --check-key")
-    if args.offline and (args.evaluate or args.check_key):
-        parser.error("--evaluate and --check-key require DeepSeek")
+    if not (args.evaluate or args.claim_ablation or args.serve or args.check_key):
+        parser.error("choose --evaluate, --claim-ablation, --serve or --check-key")
+    if args.offline and (args.evaluate or args.claim_ablation or args.check_key):
+        parser.error("evaluations and key checks require DeepSeek")
     if args.use_env_key and not args.check_key:
         parser.error("--use-env-key requires --check-key")
     if args.offline:
@@ -89,10 +96,17 @@ if __name__ == "__main__":
         os.environ["PAPERSCOPE_API_KEY"] = api_key
     if args.check_key:
         check_key()
-    if args.evaluate:
-        from evaluate import run
+    if args.evaluate or args.claim_ablation:
+        from evaluate import RESULTS, run
 
-        run()
+        output_dir = RESULTS
+        if args.claim_ablation:
+            output_dir = ROOT / "data" / f"claim-ablation-{args.embedding}"
+        elif args.embedding != "small":
+            output_dir = ROOT / "data" / f"live-benchmark-{args.embedding}"
+        metrics = run(claims_only=args.claim_ablation, embedding=args.embedding, output_dir=output_dir)
+        if any(row["api_errors"] for row in metrics["metrics"].values()):
+            raise SystemExit("Some requests failed. Rerun the same command to retry failed cases.")
     if args.serve:
         print(f"PaperScope on http://127.0.0.1:{args.port}", flush=True)
         serve(args.port)

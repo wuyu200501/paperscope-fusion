@@ -8,6 +8,7 @@ import re
 from statistics import mean
 from time import perf_counter
 
+from embedding_models import EMBEDDINGS
 from qwen_backend.prepare_corpus import clean_text
 
 HERE = Path(__file__).resolve().parent
@@ -28,6 +29,8 @@ def parse_options():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--backend", choices=["bge", "qwen"], required=True)
     parser.add_argument("--strategy", help="fixed/section for BGE or A/B for Qwen")
+    parser.add_argument("--embedding", choices=EMBEDDINGS, help="BGE model, default small")
+    parser.add_argument("--qdrant-dir", type=Path, help="Directory for persistent BGE indexes")
     parser.add_argument("--rerank", action="store_true", help="rerank 24 Qwen candidates to top five")
     parser.add_argument("--answer", action="store_true", help="also generate answers with PaperScope and DeepSeek")
     parser.add_argument("--cases", type=Path, default=HERE / "shared_cases.json")
@@ -37,6 +40,8 @@ def parse_options():
     args.strategy = args.strategy or ("section" if args.backend == "bge" else "A")
     if args.strategy not in strategies or (args.rerank and args.backend != "qwen"):
         parser.error("The strategy or reranking option does not match the backend.")
+    if args.backend == "qwen" and (args.embedding or args.qdrant_dir):
+        parser.error("--embedding and --qdrant-dir apply only to BGE.")
     return args
 
 
@@ -55,7 +60,12 @@ def main():
         papers = load_papers(paper_limit=None, paper_ids=paper_ids)
         if papers.keys() != paper_ids:
             raise ValueError(f"Missing QASPER papers: {sorted(paper_ids - papers.keys())}")
-        retriever = PaperScope(papers)
+        retriever = PaperScope(papers, embedding=args.embedding or "small", index_dir=args.qdrant_dir)
+        configuration = {
+            "embedding": retriever.model_repo,
+            "embedding_revision": retriever.model_revision,
+            "index_mode": "persistent" if retriever.index_path else "memory",
+        }
         options = {}
     else:
         from qwen_backend.paperscope_adapter import QwenRetriever
@@ -66,6 +76,7 @@ def main():
             host=os.getenv("PAPERSCOPE_OLLAMA_HOST", DEFAULT_HOST),
             model=os.getenv("PAPERSCOPE_QWEN_MODEL", DEFAULT_MODEL),
         )
+        configuration = {"embedding": retriever.model}
         options = {"rerank_n": 24 if args.rerank else 0}
 
     rows = []
@@ -91,6 +102,7 @@ def main():
 
     result = {
         "backend": args.backend, "strategy": args.strategy, "rerank": args.rerank,
+        **configuration,
         "scope": "selected paper", "top_k": 5,
         "hit_definition": "One top-five chunk contains a complete normalized evidence string.",
         "cases": len(rows), "hits": sum(row["hit_at_5"] for row in rows),

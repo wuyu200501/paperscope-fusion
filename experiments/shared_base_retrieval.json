@@ -1,0 +1,146 @@
+{
+  "experiment": "Live local retrieval on the shared QASPER set",
+  "embedding": "BAAI/bge-base-en-v1.5",
+  "embedding_revision": "a5beb1e3e68b9ab74eb54cfd186867f64f240e1a",
+  "index_mode": "persistent",
+  "scope": "selected paper",
+  "top_k": 5,
+  "hit_definition": "One top-five chunk contains a complete normalized evidence string.",
+  "total": 20,
+  "fixed": {
+    "hits": 8,
+    "hit_rate": 0.4
+  },
+  "section": {
+    "hits": 11,
+    "hit_rate": 0.55
+  },
+  "paired": {
+    "both_hit": 7,
+    "fixed_only": 1,
+    "section_only": 4,
+    "neither_hit": 8
+  },
+  "cases": [
+    {
+      "question_id": "2dbf6fe095cd879a9bf40f110b7b72c8bdde9475",
+      "paper_id": "1709.10367",
+      "fixed_hit": false,
+      "section_hit": false
+    },
+    {
+      "question_id": "c1c44fd96c3fa6e16949ae8fa453e511c6435c68",
+      "paper_id": "1902.09243",
+      "fixed_hit": false,
+      "section_hit": false
+    },
+    {
+      "question_id": "c77359fb9d3ef96965a9af0396b101f82a0a9de6",
+      "paper_id": "1909.00105",
+      "fixed_hit": false,
+      "section_hit": false
+    },
+    {
+      "question_id": "a8f51b4e334a917702422782329d97304a2fe139",
+      "paper_id": "1712.05999",
+      "fixed_hit": false,
+      "section_hit": true
+    },
+    {
+      "question_id": "021bfb7e180d67112b74f05ecb3fa13acc036c86",
+      "paper_id": "1703.07476",
+      "fixed_hit": true,
+      "section_hit": true
+    },
+    {
+      "question_id": "78292bc57ee68fdb93ed45430d80acca25a9e916",
+      "paper_id": "1911.03343",
+      "fixed_hit": false,
+      "section_hit": true
+    },
+    {
+      "question_id": "d087539e6a38c42f0a521ff2173ef42c0733878e",
+      "paper_id": "1909.11687",
+      "fixed_hit": false,
+      "section_hit": false
+    },
+    {
+      "question_id": "ed67359889cf61fa11ee291d6c378cccf83d599d",
+      "paper_id": "1707.06806",
+      "fixed_hit": true,
+      "section_hit": true
+    },
+    {
+      "question_id": "493e971ee3f57a821ef1f67ef3cd47ade154e7c4",
+      "paper_id": "1803.09123",
+      "fixed_hit": true,
+      "section_hit": true
+    },
+    {
+      "question_id": "662870a90890c620a964720b2ca122a1139410ea",
+      "paper_id": "1608.01884",
+      "fixed_hit": true,
+      "section_hit": true
+    },
+    {
+      "question_id": "b9d07757e2d2c4be41823dd1ea3b9c7f115b5f72",
+      "paper_id": "1808.03738",
+      "fixed_hit": true,
+      "section_hit": true
+    },
+    {
+      "question_id": "1269c5d8f61e821ee0029080c5ba2500421d5fa6",
+      "paper_id": "1805.07133",
+      "fixed_hit": true,
+      "section_hit": true
+    },
+    {
+      "question_id": "5a6926de13a8cc25ce687c22741ba97a6e63d4ee",
+      "paper_id": "1706.01875",
+      "fixed_hit": false,
+      "section_hit": false
+    },
+    {
+      "question_id": "df95b3cb6aa0187655fd4856ae2b1f503d533583",
+      "paper_id": "1805.03710",
+      "fixed_hit": false,
+      "section_hit": false
+    },
+    {
+      "question_id": "4c07c33dfaf4f3e6db55e377da6fa69825d0ba15",
+      "paper_id": "1610.09225",
+      "fixed_hit": false,
+      "section_hit": true
+    },
+    {
+      "question_id": "2da4c3679111dd92a1d0869dae353ebe5989dfd2",
+      "paper_id": "1908.08717",
+      "fixed_hit": false,
+      "section_hit": true
+    },
+    {
+      "question_id": "12c50dea84f9a8845795fa8b8c1679328bd66246",
+      "paper_id": "1910.10781",
+      "fixed_hit": true,
+      "section_hit": true
+    },
+    {
+      "question_id": "11e8bd4abf5f8bdabad3e8f0691e6d0ad6c326af",
+      "paper_id": "1909.08970",
+      "fixed_hit": true,
+      "section_hit": false
+    },
+    {
+      "question_id": "a74190189a6ced2a2d5b781e445e36f4e527e82a",
+      "paper_id": "1912.00667",
+      "fixed_hit": false,
+      "section_hit": false
+    },
+    {
+      "question_id": "3116453e35352a3a90ee5b12246dc7f2e60cfc59",
+      "paper_id": "1910.14076",
+      "fixed_hit": false,
+      "section_hit": false
+    }
+  ]
+}
