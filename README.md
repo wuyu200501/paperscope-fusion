@@ -28,6 +28,11 @@ python run_deepseek.py --serve --offline
 
 Open [the local app](http://127.0.0.1:8517). For DeepSeek answers and statement checking run `python run_deepseek.py --serve` and enter a key at the hidden terminal prompt. You may also set `PAPERSCOPE_API_KEY` in your local session.
 
+For authentication troubleshooting, run
+`python run_deepseek.py --check-key --serve` in an interactive terminal. The
+launcher prompts for a fresh key, checks it with DeepSeek's models endpoint,
+and starts the app with the same key after the check passes.
+
 On Windows, PaperScope loads the system Visual C++ runtime before PyTorch to
 avoid a `WinError 1114` from older runtime DLLs bundled with some Conda
 installations. If the system runtime needs updating, use the [Microsoft
