@@ -15,6 +15,14 @@ CACHE = ROOT / ".cache"
 os.environ.setdefault("HF_HOME", str(CACHE / "huggingface"))
 os.environ.setdefault("HF_HUB_OFFLINE", "1")
 
+if os.name == "nt" and "SystemRoot" in os.environ:
+    from ctypes import WinDLL
+
+    # Prefer the system C++ runtime before PyTorch picks up an older Conda copy.
+    msvc_runtime = Path(os.environ["SystemRoot"]) / "System32" / "msvcp140.dll"
+    if msvc_runtime.is_file():
+        WinDLL(str(msvc_runtime))
+
 from qdrant_client import QdrantClient, models
 from sentence_transformers import SentenceTransformer
 import numpy as np

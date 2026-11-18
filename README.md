@@ -28,6 +28,11 @@ python run_deepseek.py --serve --offline
 
 Open [the local app](http://127.0.0.1:8517). For DeepSeek answers and statement checking run `python run_deepseek.py --serve` and enter a key at the hidden terminal prompt. You may also set `PAPERSCOPE_API_KEY` in your local session.
 
+On Windows, PaperScope loads the system Visual C++ runtime before PyTorch to
+avoid a `WinError 1114` from older runtime DLLs bundled with some Conda
+installations. If the system runtime needs updating, use the [Microsoft
+Visual C++ Redistributable](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist).
+
 ### Enable Qwen retrieval
 
 Install the extra dependency, start Ollama, and install the embedding model. An existing Chroma index uses `PAPERSCOPE_QWEN_DB` to point at its directory. To create a fresh index after preparing the QASPER archive:
