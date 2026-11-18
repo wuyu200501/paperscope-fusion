@@ -37,6 +37,12 @@ python run_deepseek.py --serve --offline
 For Windows PowerShell, create the environment with `python -m venv .venv`
 and use `& .\.venv\Scripts\python.exe` in place of `python` in the commands above.
 
+If a model download is slow, reuse the prepared assets from a teammate.
+Copy `data/qasper-train-dev-v0.3.tgz`, `data/bge-small-en-v1.5/`, and
+`data/minilm-uncased-squad2/` to the same paths in the clone. Run
+`python prepare_assets.py --check` to verify the dataset archive and model
+weights against the pinned SHA-256 values before starting the app.
+
 Open [the local app](http://127.0.0.1:8517). For DeepSeek answers and statement checking run `python run_deepseek.py --serve` and enter a key at the hidden terminal prompt. You may also set `PAPERSCOPE_API_KEY` in your local session.
 
 Offline smoke test on the **pioNER** paper: select **BGE-small** and

@@ -17,6 +17,11 @@ LOCAL_QA = ("deepset/minilm-uncased-squad2", "934656cdda79824eabf503ed56e15c01dd
     "config.json", "model.safetensors", "special_tokens_map.json",
     "tokenizer_config.json", "vocab.txt",
 ])
+WEIGHT_SHA256 = {
+    "bge-small-en-v1.5": "3c9f31665447c8911517620762200d2245a2518d6e7208acc78cd9db317e21ad",
+    "bge-base-en-v1.5": "c7c1988aae201f80cf91a5dbbd5866409503b89dcaba877ca6dba7dd0a5167d7",
+    "minilm-uncased-squad2": "240478c7251d5e55be35feb47177054b960259b9328af662ea3cee87ce9755a6",
+}
 
 
 def digest(path):
@@ -67,6 +72,8 @@ def main():
             asset = DATA / name / file
             if not asset.is_file() or not asset.stat().st_size:
                 raise SystemExit(f"Missing asset {name}/{file}. Run prepare_assets.py --embedding {args.embedding}.")
+        if digest(DATA / name / "model.safetensors") != WEIGHT_SHA256[name]:
+            raise SystemExit(f"Weight checksum mismatch for {name}. Replace the file with the pinned model.")
     print("Dataset checksum and model files verified.")
 
 
