@@ -1,0 +1,2961 @@
+{
+  "provenance": "Live DeepSeek evaluation on the frozen 40-statement PaperScope case set. This public snapshot includes compact per-case metadata; the original run stores full retrieved passages.",
+  "model": "deepseek-flash",
+  "top_k": 5,
+  "fingerprint": "eac2c692e5b98701",
+  "metrics": {
+    "fixed/checked": {
+      "cases": 40,
+      "api_errors": 0,
+      "citation_validation_errors": 0,
+      "accuracy": 0.85,
+      "median_seconds": 1.46375,
+      "prompt_tokens": 51859,
+      "completion_tokens": 9158,
+      "preservation_rate": 0.8,
+      "false_acceptance_rate": 0,
+      "macro_f1": 0.832010582010582,
+      "paired_success_rate": 0.75,
+      "structured_outputs": 40
+    },
+    "fixed/direct": {
+      "cases": 40,
+      "api_errors": 0,
+      "citation_validation_errors": 0,
+      "accuracy": 0.975,
+      "median_seconds": 1.07955,
+      "prompt_tokens": 50779,
+      "completion_tokens": 3495,
+      "preservation_rate": 0.95,
+      "false_acceptance_rate": 0,
+      "macro_f1": 0.9718451483157365,
+      "paired_success_rate": 0.95,
+      "structured_outputs": 0
+    },
+    "section/checked": {
+      "cases": 40,
+      "api_errors": 0,
+      "citation_validation_errors": 0,
+      "accuracy": 0.875,
+      "median_seconds": 1.55775,
+      "prompt_tokens": 46376,
+      "completion_tokens": 9017,
+      "preservation_rate": 0.75,
+      "false_acceptance_rate": 0,
+      "macro_f1": 0.8723809523809524,
+      "paired_success_rate": 0.75,
+      "structured_outputs": 40
+    },
+    "section/direct": {
+      "cases": 40,
+      "api_errors": 0,
+      "citation_validation_errors": 0,
+      "accuracy": 0.975,
+      "median_seconds": 0.9973,
+      "prompt_tokens": 45296,
+      "completion_tokens": 3583,
+      "preservation_rate": 0.95,
+      "false_acceptance_rate": 0,
+      "macro_f1": 0.9718451483157365,
+      "paired_success_rate": 0.95,
+      "structured_outputs": 0
+    }
+  },
+  "embedding": "BAAI/bge-small-en-v1.5",
+  "embedding_revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+  "index_mode": "memory",
+  "claim_comparison": {
+    "fixed": {
+      "same_evidence_pairs": 40,
+      "checked_gains": 0,
+      "checked_losses": 5
+    },
+    "section": {
+      "same_evidence_pairs": 40,
+      "checked_gains": 0,
+      "checked_losses": 4
+    }
+  },
+  "case_results": [
+    {
+      "id": "claim-01-a",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-07-01",
+        "fixed-06-01",
+        "fixed-11-01",
+        "fixed-08-01",
+        "fixed-02-04"
+      ]
+    },
+    {
+      "id": "claim-01-b",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "fixed-07-01",
+        "fixed-06-01",
+        "fixed-11-01",
+        "fixed-08-01",
+        "fixed-12-02"
+      ]
+    },
+    {
+      "id": "claim-02-a",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "fixed-11-01",
+        "fixed-07-01",
+        "fixed-06-01",
+        "fixed-02-04",
+        "fixed-08-01"
+      ]
+    },
+    {
+      "id": "claim-02-b",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "fixed-11-01",
+        "fixed-07-01",
+        "fixed-06-01",
+        "fixed-02-04",
+        "fixed-08-01"
+      ]
+    },
+    {
+      "id": "claim-03-a",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-07-01",
+        "fixed-11-01",
+        "fixed-06-01",
+        "fixed-02-02",
+        "fixed-01-01"
+      ]
+    },
+    {
+      "id": "claim-03-b",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-11-01",
+        "fixed-07-01",
+        "fixed-06-01",
+        "fixed-02-02",
+        "fixed-03-01"
+      ]
+    },
+    {
+      "id": "claim-04-a",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-07-01",
+        "fixed-11-01",
+        "fixed-06-01",
+        "fixed-08-01",
+        "fixed-02-04"
+      ]
+    },
+    {
+      "id": "claim-04-b",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-07-01",
+        "fixed-11-01",
+        "fixed-06-01",
+        "fixed-02-04",
+        "fixed-03-01"
+      ]
+    },
+    {
+      "id": "claim-05-a",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "INSUFFICIENT",
+      "correct": false,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "fixed-07-03",
+        "fixed-07-02",
+        "fixed-07-01",
+        "fixed-12-02",
+        "fixed-12-03"
+      ]
+    },
+    {
+      "id": "claim-05-b",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-07-01",
+        "fixed-07-02",
+        "fixed-12-02",
+        "fixed-07-03",
+        "fixed-11-01"
+      ]
+    },
+    {
+      "id": "claim-06-a",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-01-01",
+        "fixed-06-01",
+        "fixed-13-01",
+        "fixed-08-01",
+        "fixed-02-01"
+      ]
+    },
+    {
+      "id": "claim-06-b",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-13-02",
+        "fixed-02-04",
+        "fixed-12-01",
+        "fixed-11-01",
+        "fixed-06-01"
+      ]
+    },
+    {
+      "id": "claim-07-a",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-05-01",
+        "fixed-12-01",
+        "fixed-02-03",
+        "fixed-06-01"
+      ]
+    },
+    {
+      "id": "claim-07-b",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-05-01",
+        "fixed-12-01",
+        "fixed-02-03",
+        "fixed-06-01"
+      ]
+    },
+    {
+      "id": "claim-08-a",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "CONTRADICTED",
+      "correct": false,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-05-02",
+        "fixed-06-01",
+        "fixed-05-01",
+        "fixed-09-01"
+      ]
+    },
+    {
+      "id": "claim-08-b",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-05-02",
+        "fixed-06-01",
+        "fixed-05-01",
+        "fixed-02-02"
+      ]
+    },
+    {
+      "id": "claim-09-a",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-05-01",
+        "fixed-06-01",
+        "fixed-05-02",
+        "fixed-02-03"
+      ]
+    },
+    {
+      "id": "claim-09-b",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-05-02",
+        "fixed-05-01",
+        "fixed-02-03",
+        "fixed-12-01"
+      ]
+    },
+    {
+      "id": "claim-10-a",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-06-01",
+        "fixed-05-02",
+        "fixed-02-03",
+        "fixed-05-01"
+      ]
+    },
+    {
+      "id": "claim-10-b",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-06-01",
+        "fixed-05-02",
+        "fixed-05-01",
+        "fixed-02-03"
+      ]
+    },
+    {
+      "id": "claim-11-a",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-05-02",
+        "fixed-06-01",
+        "fixed-05-01",
+        "fixed-11-02",
+        "fixed-04-01"
+      ]
+    },
+    {
+      "id": "claim-11-b",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "fixed-05-02",
+        "fixed-06-01",
+        "fixed-05-01",
+        "fixed-11-02",
+        "fixed-04-01"
+      ]
+    },
+    {
+      "id": "claim-12-a",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-12-01",
+        "fixed-05-02",
+        "fixed-01-01",
+        "fixed-05-01"
+      ]
+    },
+    {
+      "id": "claim-12-b",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "INSUFFICIENT",
+      "verdict": "CONTRADICTED",
+      "correct": false,
+      "citation_error": false,
+      "condition_count": 4,
+      "evidence_ids": [
+        "fixed-06-01",
+        "fixed-05-01",
+        "fixed-12-01",
+        "fixed-03-01",
+        "fixed-05-02"
+      ]
+    },
+    {
+      "id": "claim-13-a",
+      "paper_id": "1909.09067",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "fixed-03-03",
+        "fixed-08-01",
+        "fixed-01-01",
+        "fixed-09-01",
+        "fixed-04-01"
+      ]
+    },
+    {
+      "id": "claim-13-b",
+      "paper_id": "1909.09067",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "fixed-03-03",
+        "fixed-08-01",
+        "fixed-01-01",
+        "fixed-09-01",
+        "fixed-04-01"
+      ]
+    },
+    {
+      "id": "claim-14-a",
+      "paper_id": "1909.09067",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 4,
+      "evidence_ids": [
+        "fixed-01-01",
+        "fixed-10-01",
+        "fixed-09-01",
+        "fixed-05-01",
+        "fixed-02-04"
+      ]
+    },
+    {
+      "id": "claim-14-b",
+      "paper_id": "1909.09067",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 4,
+      "evidence_ids": [
+        "fixed-02-04",
+        "fixed-01-01",
+        "fixed-10-01",
+        "fixed-09-01",
+        "fixed-04-01"
+      ]
+    },
+    {
+      "id": "claim-15-a",
+      "paper_id": "1909.09067",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "fixed-07-01",
+        "fixed-07-02",
+        "fixed-06-03",
+        "fixed-04-01",
+        "fixed-02-04"
+      ]
+    },
+    {
+      "id": "claim-15-b",
+      "paper_id": "1909.09067",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-07-02",
+        "fixed-02-04",
+        "fixed-07-01",
+        "fixed-10-01",
+        "fixed-09-01"
+      ]
+    },
+    {
+      "id": "claim-16-a",
+      "paper_id": "1704.06194",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "CONTRADICTED",
+      "correct": false,
+      "citation_error": false,
+      "condition_count": 4,
+      "evidence_ids": [
+        "fixed-15-01",
+        "fixed-13-01",
+        "fixed-02-01",
+        "fixed-08-03",
+        "fixed-15-02"
+      ]
+    },
+    {
+      "id": "claim-16-b",
+      "paper_id": "1704.06194",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "INSUFFICIENT",
+      "verdict": "CONTRADICTED",
+      "correct": false,
+      "citation_error": false,
+      "condition_count": 4,
+      "evidence_ids": [
+        "fixed-15-01",
+        "fixed-15-02",
+        "fixed-02-01",
+        "fixed-02-02",
+        "fixed-08-01"
+      ]
+    },
+    {
+      "id": "claim-17-a",
+      "paper_id": "1704.06194",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-02-03",
+        "fixed-01-01",
+        "fixed-02-05",
+        "fixed-04-01",
+        "fixed-14-05"
+      ]
+    },
+    {
+      "id": "claim-17-b",
+      "paper_id": "1704.06194",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "fixed-02-03",
+        "fixed-01-01",
+        "fixed-14-03",
+        "fixed-02-05",
+        "fixed-13-02"
+      ]
+    },
+    {
+      "id": "claim-18-a",
+      "paper_id": "1909.00512",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "INSUFFICIENT",
+      "correct": false,
+      "citation_error": false,
+      "condition_count": 4,
+      "evidence_ids": [
+        "fixed-21-01",
+        "fixed-21-02",
+        "fixed-22-02",
+        "fixed-24-01",
+        "fixed-06-01"
+      ]
+    },
+    {
+      "id": "claim-18-b",
+      "paper_id": "1909.00512",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 4,
+      "evidence_ids": [
+        "fixed-21-01",
+        "fixed-22-02",
+        "fixed-21-02",
+        "fixed-24-01",
+        "fixed-06-01"
+      ]
+    },
+    {
+      "id": "claim-19-a",
+      "paper_id": "1909.00512",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 4,
+      "evidence_ids": [
+        "fixed-15-01",
+        "fixed-09-01",
+        "fixed-09-02",
+        "fixed-01-01",
+        "fixed-16-01"
+      ]
+    },
+    {
+      "id": "claim-19-b",
+      "paper_id": "1909.00512",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 4,
+      "evidence_ids": [
+        "fixed-09-01",
+        "fixed-15-01",
+        "fixed-09-02",
+        "fixed-10-01",
+        "fixed-12-02"
+      ]
+    },
+    {
+      "id": "claim-20-a",
+      "paper_id": "1801.05147",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "fixed-01-01",
+        "fixed-20-01",
+        "fixed-03-03",
+        "fixed-02-04",
+        "fixed-02-01"
+      ]
+    },
+    {
+      "id": "claim-20-b",
+      "paper_id": "1801.05147",
+      "strategy": "fixed",
+      "task": "checked",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "fixed-17-02",
+        "fixed-15-02",
+        "fixed-15-03",
+        "fixed-03-02",
+        "fixed-15-01"
+      ]
+    },
+    {
+      "id": "claim-01-a",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-07-01",
+        "fixed-06-01",
+        "fixed-11-01",
+        "fixed-08-01",
+        "fixed-02-04"
+      ]
+    },
+    {
+      "id": "claim-01-b",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-07-01",
+        "fixed-06-01",
+        "fixed-11-01",
+        "fixed-08-01",
+        "fixed-12-02"
+      ]
+    },
+    {
+      "id": "claim-02-a",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-11-01",
+        "fixed-07-01",
+        "fixed-06-01",
+        "fixed-02-04",
+        "fixed-08-01"
+      ]
+    },
+    {
+      "id": "claim-02-b",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-11-01",
+        "fixed-07-01",
+        "fixed-06-01",
+        "fixed-02-04",
+        "fixed-08-01"
+      ]
+    },
+    {
+      "id": "claim-03-a",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-07-01",
+        "fixed-11-01",
+        "fixed-06-01",
+        "fixed-02-02",
+        "fixed-01-01"
+      ]
+    },
+    {
+      "id": "claim-03-b",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-11-01",
+        "fixed-07-01",
+        "fixed-06-01",
+        "fixed-02-02",
+        "fixed-03-01"
+      ]
+    },
+    {
+      "id": "claim-04-a",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-07-01",
+        "fixed-11-01",
+        "fixed-06-01",
+        "fixed-08-01",
+        "fixed-02-04"
+      ]
+    },
+    {
+      "id": "claim-04-b",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-07-01",
+        "fixed-11-01",
+        "fixed-06-01",
+        "fixed-02-04",
+        "fixed-03-01"
+      ]
+    },
+    {
+      "id": "claim-05-a",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-07-03",
+        "fixed-07-02",
+        "fixed-07-01",
+        "fixed-12-02",
+        "fixed-12-03"
+      ]
+    },
+    {
+      "id": "claim-05-b",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-07-01",
+        "fixed-07-02",
+        "fixed-12-02",
+        "fixed-07-03",
+        "fixed-11-01"
+      ]
+    },
+    {
+      "id": "claim-06-a",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-01-01",
+        "fixed-06-01",
+        "fixed-13-01",
+        "fixed-08-01",
+        "fixed-02-01"
+      ]
+    },
+    {
+      "id": "claim-06-b",
+      "paper_id": "1810.08699",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-13-02",
+        "fixed-02-04",
+        "fixed-12-01",
+        "fixed-11-01",
+        "fixed-06-01"
+      ]
+    },
+    {
+      "id": "claim-07-a",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-05-01",
+        "fixed-12-01",
+        "fixed-02-03",
+        "fixed-06-01"
+      ]
+    },
+    {
+      "id": "claim-07-b",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-05-01",
+        "fixed-12-01",
+        "fixed-02-03",
+        "fixed-06-01"
+      ]
+    },
+    {
+      "id": "claim-08-a",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-05-02",
+        "fixed-06-01",
+        "fixed-05-01",
+        "fixed-09-01"
+      ]
+    },
+    {
+      "id": "claim-08-b",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-05-02",
+        "fixed-06-01",
+        "fixed-05-01",
+        "fixed-02-02"
+      ]
+    },
+    {
+      "id": "claim-09-a",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-05-01",
+        "fixed-06-01",
+        "fixed-05-02",
+        "fixed-02-03"
+      ]
+    },
+    {
+      "id": "claim-09-b",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-05-02",
+        "fixed-05-01",
+        "fixed-02-03",
+        "fixed-12-01"
+      ]
+    },
+    {
+      "id": "claim-10-a",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-06-01",
+        "fixed-05-02",
+        "fixed-02-03",
+        "fixed-05-01"
+      ]
+    },
+    {
+      "id": "claim-10-b",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-06-01",
+        "fixed-05-02",
+        "fixed-05-01",
+        "fixed-02-03"
+      ]
+    },
+    {
+      "id": "claim-11-a",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-05-02",
+        "fixed-06-01",
+        "fixed-05-01",
+        "fixed-11-02",
+        "fixed-04-01"
+      ]
+    },
+    {
+      "id": "claim-11-b",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-05-02",
+        "fixed-06-01",
+        "fixed-05-01",
+        "fixed-11-02",
+        "fixed-04-01"
+      ]
+    },
+    {
+      "id": "claim-12-a",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-03-01",
+        "fixed-12-01",
+        "fixed-05-02",
+        "fixed-01-01",
+        "fixed-05-01"
+      ]
+    },
+    {
+      "id": "claim-12-b",
+      "paper_id": "1609.00425",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-06-01",
+        "fixed-05-01",
+        "fixed-12-01",
+        "fixed-03-01",
+        "fixed-05-02"
+      ]
+    },
+    {
+      "id": "claim-13-a",
+      "paper_id": "1909.09067",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-03-03",
+        "fixed-08-01",
+        "fixed-01-01",
+        "fixed-09-01",
+        "fixed-04-01"
+      ]
+    },
+    {
+      "id": "claim-13-b",
+      "paper_id": "1909.09067",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-03-03",
+        "fixed-08-01",
+        "fixed-01-01",
+        "fixed-09-01",
+        "fixed-04-01"
+      ]
+    },
+    {
+      "id": "claim-14-a",
+      "paper_id": "1909.09067",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-01-01",
+        "fixed-10-01",
+        "fixed-09-01",
+        "fixed-05-01",
+        "fixed-02-04"
+      ]
+    },
+    {
+      "id": "claim-14-b",
+      "paper_id": "1909.09067",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-02-04",
+        "fixed-01-01",
+        "fixed-10-01",
+        "fixed-09-01",
+        "fixed-04-01"
+      ]
+    },
+    {
+      "id": "claim-15-a",
+      "paper_id": "1909.09067",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-07-01",
+        "fixed-07-02",
+        "fixed-06-03",
+        "fixed-04-01",
+        "fixed-02-04"
+      ]
+    },
+    {
+      "id": "claim-15-b",
+      "paper_id": "1909.09067",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-07-02",
+        "fixed-02-04",
+        "fixed-07-01",
+        "fixed-10-01",
+        "fixed-09-01"
+      ]
+    },
+    {
+      "id": "claim-16-a",
+      "paper_id": "1704.06194",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "INSUFFICIENT",
+      "correct": false,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-15-01",
+        "fixed-13-01",
+        "fixed-02-01",
+        "fixed-08-03",
+        "fixed-15-02"
+      ]
+    },
+    {
+      "id": "claim-16-b",
+      "paper_id": "1704.06194",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-15-01",
+        "fixed-15-02",
+        "fixed-02-01",
+        "fixed-02-02",
+        "fixed-08-01"
+      ]
+    },
+    {
+      "id": "claim-17-a",
+      "paper_id": "1704.06194",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-02-03",
+        "fixed-01-01",
+        "fixed-02-05",
+        "fixed-04-01",
+        "fixed-14-05"
+      ]
+    },
+    {
+      "id": "claim-17-b",
+      "paper_id": "1704.06194",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-02-03",
+        "fixed-01-01",
+        "fixed-14-03",
+        "fixed-02-05",
+        "fixed-13-02"
+      ]
+    },
+    {
+      "id": "claim-18-a",
+      "paper_id": "1909.00512",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-21-01",
+        "fixed-21-02",
+        "fixed-22-02",
+        "fixed-24-01",
+        "fixed-06-01"
+      ]
+    },
+    {
+      "id": "claim-18-b",
+      "paper_id": "1909.00512",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-21-01",
+        "fixed-22-02",
+        "fixed-21-02",
+        "fixed-24-01",
+        "fixed-06-01"
+      ]
+    },
+    {
+      "id": "claim-19-a",
+      "paper_id": "1909.00512",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-15-01",
+        "fixed-09-01",
+        "fixed-09-02",
+        "fixed-01-01",
+        "fixed-16-01"
+      ]
+    },
+    {
+      "id": "claim-19-b",
+      "paper_id": "1909.00512",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-09-01",
+        "fixed-15-01",
+        "fixed-09-02",
+        "fixed-10-01",
+        "fixed-12-02"
+      ]
+    },
+    {
+      "id": "claim-20-a",
+      "paper_id": "1801.05147",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-01-01",
+        "fixed-20-01",
+        "fixed-03-03",
+        "fixed-02-04",
+        "fixed-02-01"
+      ]
+    },
+    {
+      "id": "claim-20-b",
+      "paper_id": "1801.05147",
+      "strategy": "fixed",
+      "task": "direct",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "fixed-17-02",
+        "fixed-15-02",
+        "fixed-15-03",
+        "fixed-03-02",
+        "fixed-15-01"
+      ]
+    },
+    {
+      "id": "claim-01-a",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "section-07-01",
+        "section-06-01",
+        "section-11-01",
+        "section-08-01",
+        "section-12-02"
+      ]
+    },
+    {
+      "id": "claim-01-b",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-07-01",
+        "section-06-01",
+        "section-11-01",
+        "section-08-01",
+        "section-12-02"
+      ]
+    },
+    {
+      "id": "claim-02-a",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "INSUFFICIENT",
+      "correct": false,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-07-01",
+        "section-11-01",
+        "section-06-01",
+        "section-12-02",
+        "section-08-01"
+      ]
+    },
+    {
+      "id": "claim-02-b",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-07-01",
+        "section-11-01",
+        "section-06-01",
+        "section-08-01",
+        "section-01-01"
+      ]
+    },
+    {
+      "id": "claim-03-a",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-07-01",
+        "section-11-01",
+        "section-06-01",
+        "section-07-03",
+        "section-02-03"
+      ]
+    },
+    {
+      "id": "claim-03-b",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-11-01",
+        "section-07-01",
+        "section-06-01",
+        "section-02-03",
+        "section-03-01"
+      ]
+    },
+    {
+      "id": "claim-04-a",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "section-07-01",
+        "section-11-01",
+        "section-06-01",
+        "section-13-02",
+        "section-08-01"
+      ]
+    },
+    {
+      "id": "claim-04-b",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-07-01",
+        "section-11-01",
+        "section-06-01",
+        "section-13-02",
+        "section-02-03"
+      ]
+    },
+    {
+      "id": "claim-05-a",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 1,
+      "evidence_ids": [
+        "section-07-03",
+        "section-07-02",
+        "section-12-03",
+        "section-07-01",
+        "section-11-01"
+      ]
+    },
+    {
+      "id": "claim-05-b",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-07-01",
+        "section-07-02",
+        "section-12-02",
+        "section-07-03",
+        "section-11-01"
+      ]
+    },
+    {
+      "id": "claim-06-a",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-01-01",
+        "section-02-03",
+        "section-06-01",
+        "section-08-01",
+        "section-13-01"
+      ]
+    },
+    {
+      "id": "claim-06-b",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-02-01",
+        "section-02-03",
+        "section-11-01",
+        "section-06-01",
+        "section-08-01"
+      ]
+    },
+    {
+      "id": "claim-07-a",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "section-03-01",
+        "section-08-02",
+        "section-02-03",
+        "section-12-01",
+        "section-06-01"
+      ]
+    },
+    {
+      "id": "claim-07-b",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "section-03-01",
+        "section-08-02",
+        "section-02-03",
+        "section-12-01",
+        "section-06-01"
+      ]
+    },
+    {
+      "id": "claim-08-a",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "CONTRADICTED",
+      "correct": false,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "section-03-01",
+        "section-06-01",
+        "section-02-03",
+        "section-08-02",
+        "section-09-02"
+      ]
+    },
+    {
+      "id": "claim-08-b",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "section-03-01",
+        "section-06-01",
+        "section-08-02",
+        "section-02-03",
+        "section-09-02"
+      ]
+    },
+    {
+      "id": "claim-09-a",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "section-03-01",
+        "section-06-01",
+        "section-02-03",
+        "section-05-02",
+        "section-12-01"
+      ]
+    },
+    {
+      "id": "claim-09-b",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "section-03-01",
+        "section-02-03",
+        "section-12-01",
+        "section-05-02",
+        "section-06-01"
+      ]
+    },
+    {
+      "id": "claim-10-a",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "section-03-01",
+        "section-07-01",
+        "section-06-01",
+        "section-02-03",
+        "section-03-02"
+      ]
+    },
+    {
+      "id": "claim-10-b",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-03-01",
+        "section-06-01",
+        "section-02-03",
+        "section-07-01",
+        "section-03-02"
+      ]
+    },
+    {
+      "id": "claim-11-a",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-05-02",
+        "section-05-03",
+        "section-06-01",
+        "section-05-01",
+        "section-03-05"
+      ]
+    },
+    {
+      "id": "claim-11-b",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "section-05-02",
+        "section-05-03",
+        "section-06-01",
+        "section-05-01",
+        "section-03-05"
+      ]
+    },
+    {
+      "id": "claim-12-a",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-03-02",
+        "section-03-01",
+        "section-12-01",
+        "section-02-03",
+        "section-05-01"
+      ]
+    },
+    {
+      "id": "claim-12-b",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 4,
+      "evidence_ids": [
+        "section-06-01",
+        "section-05-01",
+        "section-12-01",
+        "section-02-03",
+        "section-08-02"
+      ]
+    },
+    {
+      "id": "claim-13-a",
+      "paper_id": "1909.09067",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "section-03-02",
+        "section-08-01",
+        "section-06-04",
+        "section-01-01",
+        "section-09-01"
+      ]
+    },
+    {
+      "id": "claim-13-b",
+      "paper_id": "1909.09067",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-08-01",
+        "section-01-01",
+        "section-09-01",
+        "section-06-04",
+        "section-03-02"
+      ]
+    },
+    {
+      "id": "claim-14-a",
+      "paper_id": "1909.09067",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 4,
+      "evidence_ids": [
+        "section-01-01",
+        "section-02-05",
+        "section-10-01",
+        "section-09-01",
+        "section-05-01"
+      ]
+    },
+    {
+      "id": "claim-14-b",
+      "paper_id": "1909.09067",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 4,
+      "evidence_ids": [
+        "section-01-01",
+        "section-02-05",
+        "section-10-01",
+        "section-09-01",
+        "section-07-02"
+      ]
+    },
+    {
+      "id": "claim-15-a",
+      "paper_id": "1909.09067",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "INSUFFICIENT",
+      "correct": false,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "section-07-01",
+        "section-07-02",
+        "section-06-03",
+        "section-05-01",
+        "section-04-01"
+      ]
+    },
+    {
+      "id": "claim-15-b",
+      "paper_id": "1909.09067",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 4,
+      "evidence_ids": [
+        "section-07-02",
+        "section-02-05",
+        "section-02-04",
+        "section-10-01",
+        "section-09-01"
+      ]
+    },
+    {
+      "id": "claim-16-a",
+      "paper_id": "1704.06194",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "INSUFFICIENT",
+      "correct": false,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-15-01",
+        "section-13-01",
+        "section-15-03",
+        "section-15-02",
+        "section-02-01"
+      ]
+    },
+    {
+      "id": "claim-16-b",
+      "paper_id": "1704.06194",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 4,
+      "evidence_ids": [
+        "section-15-01",
+        "section-15-03",
+        "section-15-02",
+        "section-08-01",
+        "section-02-02"
+      ]
+    },
+    {
+      "id": "claim-17-a",
+      "paper_id": "1704.06194",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 4,
+      "evidence_ids": [
+        "section-02-03",
+        "section-01-01",
+        "section-02-05",
+        "section-13-03",
+        "section-04-01"
+      ]
+    },
+    {
+      "id": "claim-17-b",
+      "paper_id": "1704.06194",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "section-02-03",
+        "section-01-01",
+        "section-13-03",
+        "section-14-03",
+        "section-02-05"
+      ]
+    },
+    {
+      "id": "claim-18-a",
+      "paper_id": "1909.00512",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "INSUFFICIENT",
+      "correct": false,
+      "citation_error": false,
+      "condition_count": 5,
+      "evidence_ids": [
+        "section-21-02",
+        "section-02-04",
+        "section-21-03",
+        "section-22-02",
+        "section-21-01"
+      ]
+    },
+    {
+      "id": "claim-18-b",
+      "paper_id": "1909.00512",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 4,
+      "evidence_ids": [
+        "section-21-02",
+        "section-02-04",
+        "section-22-02",
+        "section-21-01",
+        "section-21-03"
+      ]
+    },
+    {
+      "id": "claim-19-a",
+      "paper_id": "1909.00512",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-15-01",
+        "section-09-02",
+        "section-09-01",
+        "section-15-02",
+        "section-01-01"
+      ]
+    },
+    {
+      "id": "claim-19-b",
+      "paper_id": "1909.00512",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-15-01",
+        "section-09-01",
+        "section-09-02",
+        "section-15-02",
+        "section-10-02"
+      ]
+    },
+    {
+      "id": "claim-20-a",
+      "paper_id": "1801.05147",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 2,
+      "evidence_ids": [
+        "section-01-01",
+        "section-20-01",
+        "section-03-04",
+        "section-02-04",
+        "section-17-02"
+      ]
+    },
+    {
+      "id": "claim-20-b",
+      "paper_id": "1801.05147",
+      "strategy": "section",
+      "task": "checked",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 3,
+      "evidence_ids": [
+        "section-04-01",
+        "section-15-02",
+        "section-15-03",
+        "section-15-01",
+        "section-17-01"
+      ]
+    },
+    {
+      "id": "claim-01-a",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-07-01",
+        "section-06-01",
+        "section-11-01",
+        "section-08-01",
+        "section-12-02"
+      ]
+    },
+    {
+      "id": "claim-01-b",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-07-01",
+        "section-06-01",
+        "section-11-01",
+        "section-08-01",
+        "section-12-02"
+      ]
+    },
+    {
+      "id": "claim-02-a",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-07-01",
+        "section-11-01",
+        "section-06-01",
+        "section-12-02",
+        "section-08-01"
+      ]
+    },
+    {
+      "id": "claim-02-b",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-07-01",
+        "section-11-01",
+        "section-06-01",
+        "section-08-01",
+        "section-01-01"
+      ]
+    },
+    {
+      "id": "claim-03-a",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-07-01",
+        "section-11-01",
+        "section-06-01",
+        "section-07-03",
+        "section-02-03"
+      ]
+    },
+    {
+      "id": "claim-03-b",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-11-01",
+        "section-07-01",
+        "section-06-01",
+        "section-02-03",
+        "section-03-01"
+      ]
+    },
+    {
+      "id": "claim-04-a",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-07-01",
+        "section-11-01",
+        "section-06-01",
+        "section-13-02",
+        "section-08-01"
+      ]
+    },
+    {
+      "id": "claim-04-b",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-07-01",
+        "section-11-01",
+        "section-06-01",
+        "section-13-02",
+        "section-02-03"
+      ]
+    },
+    {
+      "id": "claim-05-a",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-07-03",
+        "section-07-02",
+        "section-12-03",
+        "section-07-01",
+        "section-11-01"
+      ]
+    },
+    {
+      "id": "claim-05-b",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-07-01",
+        "section-07-02",
+        "section-12-02",
+        "section-07-03",
+        "section-11-01"
+      ]
+    },
+    {
+      "id": "claim-06-a",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-01-01",
+        "section-02-03",
+        "section-06-01",
+        "section-08-01",
+        "section-13-01"
+      ]
+    },
+    {
+      "id": "claim-06-b",
+      "paper_id": "1810.08699",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-02-01",
+        "section-02-03",
+        "section-11-01",
+        "section-06-01",
+        "section-08-01"
+      ]
+    },
+    {
+      "id": "claim-07-a",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-03-01",
+        "section-08-02",
+        "section-02-03",
+        "section-12-01",
+        "section-06-01"
+      ]
+    },
+    {
+      "id": "claim-07-b",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-03-01",
+        "section-08-02",
+        "section-02-03",
+        "section-12-01",
+        "section-06-01"
+      ]
+    },
+    {
+      "id": "claim-08-a",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-03-01",
+        "section-06-01",
+        "section-02-03",
+        "section-08-02",
+        "section-09-02"
+      ]
+    },
+    {
+      "id": "claim-08-b",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-03-01",
+        "section-06-01",
+        "section-08-02",
+        "section-02-03",
+        "section-09-02"
+      ]
+    },
+    {
+      "id": "claim-09-a",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-03-01",
+        "section-06-01",
+        "section-02-03",
+        "section-05-02",
+        "section-12-01"
+      ]
+    },
+    {
+      "id": "claim-09-b",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-03-01",
+        "section-02-03",
+        "section-12-01",
+        "section-05-02",
+        "section-06-01"
+      ]
+    },
+    {
+      "id": "claim-10-a",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-03-01",
+        "section-07-01",
+        "section-06-01",
+        "section-02-03",
+        "section-03-02"
+      ]
+    },
+    {
+      "id": "claim-10-b",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-03-01",
+        "section-06-01",
+        "section-02-03",
+        "section-07-01",
+        "section-03-02"
+      ]
+    },
+    {
+      "id": "claim-11-a",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-05-02",
+        "section-05-03",
+        "section-06-01",
+        "section-05-01",
+        "section-03-05"
+      ]
+    },
+    {
+      "id": "claim-11-b",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-05-02",
+        "section-05-03",
+        "section-06-01",
+        "section-05-01",
+        "section-03-05"
+      ]
+    },
+    {
+      "id": "claim-12-a",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-03-02",
+        "section-03-01",
+        "section-12-01",
+        "section-02-03",
+        "section-05-01"
+      ]
+    },
+    {
+      "id": "claim-12-b",
+      "paper_id": "1609.00425",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-06-01",
+        "section-05-01",
+        "section-12-01",
+        "section-02-03",
+        "section-08-02"
+      ]
+    },
+    {
+      "id": "claim-13-a",
+      "paper_id": "1909.09067",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-03-02",
+        "section-08-01",
+        "section-06-04",
+        "section-01-01",
+        "section-09-01"
+      ]
+    },
+    {
+      "id": "claim-13-b",
+      "paper_id": "1909.09067",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-08-01",
+        "section-01-01",
+        "section-09-01",
+        "section-06-04",
+        "section-03-02"
+      ]
+    },
+    {
+      "id": "claim-14-a",
+      "paper_id": "1909.09067",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-01-01",
+        "section-02-05",
+        "section-10-01",
+        "section-09-01",
+        "section-05-01"
+      ]
+    },
+    {
+      "id": "claim-14-b",
+      "paper_id": "1909.09067",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-01-01",
+        "section-02-05",
+        "section-10-01",
+        "section-09-01",
+        "section-07-02"
+      ]
+    },
+    {
+      "id": "claim-15-a",
+      "paper_id": "1909.09067",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-07-01",
+        "section-07-02",
+        "section-06-03",
+        "section-05-01",
+        "section-04-01"
+      ]
+    },
+    {
+      "id": "claim-15-b",
+      "paper_id": "1909.09067",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-07-02",
+        "section-02-05",
+        "section-02-04",
+        "section-10-01",
+        "section-09-01"
+      ]
+    },
+    {
+      "id": "claim-16-a",
+      "paper_id": "1704.06194",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "INSUFFICIENT",
+      "correct": false,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-15-01",
+        "section-13-01",
+        "section-15-03",
+        "section-15-02",
+        "section-02-01"
+      ]
+    },
+    {
+      "id": "claim-16-b",
+      "paper_id": "1704.06194",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-15-01",
+        "section-15-03",
+        "section-15-02",
+        "section-08-01",
+        "section-02-02"
+      ]
+    },
+    {
+      "id": "claim-17-a",
+      "paper_id": "1704.06194",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-02-03",
+        "section-01-01",
+        "section-02-05",
+        "section-13-03",
+        "section-04-01"
+      ]
+    },
+    {
+      "id": "claim-17-b",
+      "paper_id": "1704.06194",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-02-03",
+        "section-01-01",
+        "section-13-03",
+        "section-14-03",
+        "section-02-05"
+      ]
+    },
+    {
+      "id": "claim-18-a",
+      "paper_id": "1909.00512",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-21-02",
+        "section-02-04",
+        "section-21-03",
+        "section-22-02",
+        "section-21-01"
+      ]
+    },
+    {
+      "id": "claim-18-b",
+      "paper_id": "1909.00512",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "CONTRADICTED",
+      "verdict": "CONTRADICTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-21-02",
+        "section-02-04",
+        "section-22-02",
+        "section-21-01",
+        "section-21-03"
+      ]
+    },
+    {
+      "id": "claim-19-a",
+      "paper_id": "1909.00512",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-15-01",
+        "section-09-02",
+        "section-09-01",
+        "section-15-02",
+        "section-01-01"
+      ]
+    },
+    {
+      "id": "claim-19-b",
+      "paper_id": "1909.00512",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-15-01",
+        "section-09-01",
+        "section-09-02",
+        "section-15-02",
+        "section-10-02"
+      ]
+    },
+    {
+      "id": "claim-20-a",
+      "paper_id": "1801.05147",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "SUPPORTED",
+      "verdict": "SUPPORTED",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-01-01",
+        "section-20-01",
+        "section-03-04",
+        "section-02-04",
+        "section-17-02"
+      ]
+    },
+    {
+      "id": "claim-20-b",
+      "paper_id": "1801.05147",
+      "strategy": "section",
+      "task": "direct",
+      "expected": "INSUFFICIENT",
+      "verdict": "INSUFFICIENT",
+      "correct": true,
+      "citation_error": false,
+      "condition_count": 0,
+      "evidence_ids": [
+        "section-04-01",
+        "section-15-02",
+        "section-15-03",
+        "section-15-01",
+        "section-17-01"
+      ]
+    }
+  ]
+}

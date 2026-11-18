@@ -102,6 +102,8 @@ See `data/claim-ablation-base/metrics.json` for accuracy, macro-F1, paired
 success, false acceptance, latency, and token totals. The older archived
 experiment used prompt-based Checked; the new run writes to a separate folder.
 The same command with `--embedding small` runs the BGE-small comparison.
+The [published BGE-small run](experiments/claim_ablation_small.json) contains
+the four configuration summaries and compact per-case records.
 
 To generate an optional offline replay of the original PaperScope records, run `python build_replay.py`. For a completed new PaperScope run, use `python build_replay.py --from-run results --output PaperScope-Replay-latest.html`.
 

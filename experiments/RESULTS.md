@@ -39,15 +39,33 @@ On this sample, BGE-small with paragraph-aware chunking had the highest Hit@5.
 
 ## Structured Checked
 
-The new Checked workflow returns a row for each material condition with the
+The structured Checked workflow returns a row for each material condition with the
 assertion, evidence finding, verdict, and cited excerpt where applicable.
 PaperScope validates the source and quotation, then computes the overall
 verdict. The [claim ablation entry point](../README.md#direct-and-checked-statement-comparison)
-runs the four controlled configurations. Integration tests used simulated
-model responses, including three verdict types and a retry after an
-interrupted pair. Historical verdicts from the earlier prompt-based Checker
-remain in their original logs. Live results for structured Checked require a
-new run with a DeepSeek key.
+runs the four controlled configurations. The live run `eac2c692e5b98701` held
+BGE-small, DeepSeek Flash, the 40 statement labels and Top-5 constant. Each
+within-chunker Direct/Checked pair received identical evidence. All 160 API
+calls produced results, and all 80 Checked results passed citation validation
+and included structured conditions.
+
+| Chunking | Method | Correct | Macro-F1 | Gold-supported retained | False acceptance | Median latency | Total tokens |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Fixed size | Direct | 39/40 | 0.972 | 19/20 | 0/20 | 1.08 s | 54,274 |
+| Fixed size | Checked | 34/40 | 0.832 | 16/20 | 0/20 | 1.46 s | 61,017 |
+| Paragraph aware | Direct | 39/40 | 0.972 | 19/20 | 0/20 | 1.00 s | 48,879 |
+| Paragraph aware | Checked | 35/40 | 0.872 | 15/20 | 0/20 | 1.56 s | 55,393 |
+
+Structured Checked exposed which conditions triggered the verdict. In this
+40-statement set it lost five correct classifications for fixed chunks and
+four for paragraph-aware chunks, with zero gains against Direct. One example
+is `claim-02-a`, where paragraph-aware Checked verified the sentence count
+and manual annotation but marked the dataset's test role insufficient. The
+extra condition changed a gold-supported statement to insufficient.
+This comparison measures verdict agreement with the frozen labels. Human
+evaluation of the condition statements and citation support remains separate.
+See [compact per-case results](claim_ablation_small.json). Earlier prompt-based
+Checked verdicts remain in the original archive.
 
 - [PaperScope original benchmark](https://github.com/Kevin999-sudo/paperscope-cs5481/tree/7f02989d3410532eeed12329ea82ef2369b24a71/results)
 - [Qwen original benchmark](https://github.com/a5ynchr0ny/CS5481-project-rag/tree/e0493416a87dc60f7e5762a548ca999fe565c60c/results)

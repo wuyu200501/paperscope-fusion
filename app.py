@@ -37,9 +37,11 @@ if page == "Evaluation":
     st.header("Evaluation results")
     for embedding in ("small", "base"):
         live_path = ROOT / "data" / f"claim-ablation-{embedding}" / "metrics.json"
-        if live_path.is_file():
-            live = json.loads(live_path.read_text(encoding="utf-8"))
-            st.subheader(f"Live statement-checking comparison · BGE-{embedding}")
+        published_path = ROOT / "experiments" / f"claim_ablation_{embedding}.json"
+        metrics_path = live_path if live_path.is_file() else published_path
+        if metrics_path.is_file():
+            live = json.loads(metrics_path.read_text(encoding="utf-8"))
+            st.subheader(f"Statement-checking experiment · BGE-{embedding}")
             st.caption(f"{live['model']} · Top {live['top_k']} · run {live['fingerprint']}")
             st.dataframe([
                 {
